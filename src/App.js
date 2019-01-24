@@ -2,10 +2,11 @@ import React, { Component, Fragment } from "react";
 import "./App.css";
 import { connect } from "react-redux";
 import { addExample } from "./store/actions/exampleAction";
-import { BrowserRouter, Switch, Route, NavLink } from "react-router-dom";
+import { BrowserRouter, Switch, Route } from "react-router-dom";
 import Main from "./components/Main";
 import WorkOut from "./components/workOut/WorkOut";
 import SignUp from "./components/auth/SignUp";
+import Toolbar from "./components/Toolbar";
 
 class App extends Component {
   render() {
@@ -13,19 +14,7 @@ class App extends Component {
       <div className="App">
         <BrowserRouter>
           <Fragment>
-            <ul>
-              <li>
-                <NavLink exact to="/">
-                  Main page
-                </NavLink>
-              </li>
-              <li>
-                <NavLink to="/workout">WorkOut</NavLink>
-              </li>
-              <li>
-                <NavLink to="/signup">SignUp</NavLink>
-              </li>
-            </ul>
+            <Toolbar />
 
             <Switch>
               <Route exact path="/" component={Main} />
