@@ -9,7 +9,7 @@
 /coverage
 
 #firebase
-/src/firebase/config.js
+/src/firebase/config
 
 # production
 /build
