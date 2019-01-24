@@ -3,6 +3,7 @@ import "./App.css";
 import { connect } from "react-redux";
 import { addExample } from "./store/actions/exampleAction";
 import WorkOut from "./components/workOut/WorkOut";
+import { BrowserRouter, Switch, Route } from "react-router-dom";
 
 class App extends Component {
   actionExample = () => {
@@ -12,10 +13,11 @@ class App extends Component {
   render() {
     return (
       <div className="App">
-        <h1>Start template create-react-app</h1>
-        {`Store === ${this.props.example}`}
-        <WorkOut />
-        <button onClick={this.actionExample}>Action example</button>
+        <BrowserRouter>
+          <Switch>
+            <Route path="/workout" component={WorkOut} />
+          </Switch>
+        </BrowserRouter>
       </div>
     );
   }
