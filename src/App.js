@@ -1,28 +1,33 @@
-import React, { Component } from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React, { Component } from "react";
+import "./App.css";
+import { connect } from "react-redux";
+import { addExample } from "./store/actions/exampleAction";
 
 class App extends Component {
+  actionExample = () => {
+    this.props.addExample("Yes, it's work");
+  };
+
   render() {
     return (
       <div className="App">
-        <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <p>
-            Edit <code>src/App.js</code> and save to reload.
-          </p>
-          <a
-            className="App-link"
-            href="https://reactjs.org"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Learn React
-          </a>
-        </header>
+        <h1>Start template create-react-app</h1>
+        {`Store === ${this.props.example}`}
+        <button onClick={this.actionExample}>Action example</button>
       </div>
     );
   }
 }
 
-export default App;
+const mapStateToProps = state => ({
+  example: state.example
+});
+
+const mapDispatchToProps = dispatch => ({
+  addExample: some => dispatch(addExample(some))
+});
+
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(App);
