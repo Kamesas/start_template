@@ -1,4 +1,4 @@
-//import firebase from "firebase";
-import { FirebaseConfig } from "./FirebaseConfig";
+import firebase from "firebase";
+import { config } from "./config";
 
-//export const firefirebase = firebase.initializeApp(FirebaseConfig);
+export const fire = firebase.initializeApp(config);

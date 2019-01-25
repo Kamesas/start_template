@@ -1,4 +1,4 @@
-export const FirebaseConfig = {
+export const config = {
   apiKey: "AIzaSyD5l2TLEwpZw_Mm7UZKeMLi-Ru26FtBeM0",
   authDomain: "workout-ec6f3.firebaseapp.com",
   databaseURL: "https://workout-ec6f3.firebaseio.com",

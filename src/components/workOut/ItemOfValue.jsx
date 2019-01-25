@@ -10,7 +10,7 @@ class ItemOfValue extends Component {
     return (
       <div>
         <Label image>
-          <Icon name="check" color="green" />
+          {/* <Icon name="check" color="green" /> */}
           50
           <Icon name="delete" onClick={this.daleteItem} color="red" />
         </Label>
