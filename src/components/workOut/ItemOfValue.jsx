@@ -7,11 +7,14 @@ class ItemOfValue extends Component {
     alert("del");
   };
   render() {
+    const { value } = this.props;
+    console.log(value);
     return (
       <div>
         <Label image>
           {/* <Icon name="check" color="green" /> */}
-          50
+          {value.numberOfTimes && value.numberOfTimes}
+          {value.exercise && value.exercise}
           <Icon name="delete" onClick={this.daleteItem} color="red" />
         </Label>
       </div>

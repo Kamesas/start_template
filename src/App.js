@@ -1,7 +1,5 @@
 import React, { Component, Fragment } from "react";
 import "./App.css";
-import { connect } from "react-redux";
-import { addExample } from "./store/actions/exampleAction";
 import { BrowserRouter, Switch, Route } from "react-router-dom";
 import Main from "./components/Main";
 import WorkOut from "./components/workOut/WorkOut";
@@ -28,15 +26,4 @@ class App extends Component {
   }
 }
 
-const mapStateToProps = state => ({
-  example: state.example
-});
-
-const mapDispatchToProps = dispatch => ({
-  addExample: some => dispatch(addExample(some))
-});
-
-export default connect(
-  mapStateToProps,
-  mapDispatchToProps
-)(App);
+export default App;

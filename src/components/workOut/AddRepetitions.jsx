@@ -2,22 +2,37 @@ import React, { Component } from "react";
 import { Input, Icon } from "semantic-ui-react";
 import ListOfValue from "./ListOfValue";
 import { connect } from "react-redux";
-import { addUserValues } from "../../store/actions/workoutActions";
+//import _ from "lodash";
+import {
+  addUserValues,
+  fetchWorkoutValues
+} from "../../store/actions/workoutActions";
 
 class AddRepetitions extends Component {
-  state = { value: "" };
+  state = {
+    numberOfTimes: ""
+  };
+
+  componentDidMount() {
+    this.props.fetchWorkoutValues();
+  }
 
   handleChange = (e, { value }) => {
-    this.setState({ value });
+    this.setState({ numberOfTimes: value });
   };
 
   addValue = () => {
-    if (this.state.value !== "") {
-      this.props.addUserValues(this.state.value);
+    const newValue = {
+      exercise: this.props.exercise,
+      numberOfTimes: this.state.numberOfTimes
+    };
+
+    if (this.state.numberOfTimes !== "") {
+      this.props.addUserValues(newValue);
     } else {
       alert("Введите значение !");
     }
-    this.setState({ value: "" });
+    this.setState({ numberOfTimes: "" });
   };
 
   render() {
@@ -25,7 +40,7 @@ class AddRepetitions extends Component {
       <div>
         <Input
           onChange={this.handleChange}
-          value={this.state.value}
+          value={this.state.numberOfTimes}
           icon={
             <Icon
               name="add"
@@ -39,18 +54,26 @@ class AddRepetitions extends Component {
           placeholder="кол-во повторений"
         />
         <div>
-          <ListOfValue />
+          <ListOfValue
+            workoutValues={this.props.workoutValues}
+            exercise={this.props.exercise}
+          />
         </div>
       </div>
     );
   }
 }
 
+const mapStateToProps = state => ({
+  workoutValues: state.workoutValues
+});
+
 const mapDispatchToProps = dispatch => ({
-  addUserValues: some => dispatch(addUserValues(some))
+  addUserValues: newValue => dispatch(addUserValues(newValue)),
+  fetchWorkoutValues: () => dispatch(fetchWorkoutValues())
 });
 
 export default connect(
-  null,
+  mapStateToProps,
   mapDispatchToProps
 )(AddRepetitions);

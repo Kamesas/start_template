@@ -1,8 +1,8 @@
 import { combineReducers } from "redux";
-import example from "./exampleReducer";
+import workoutValues from "./workoutReducer";
 
 const rootReducer = combineReducers({
-  example
+  workoutValues
 });
 
 export default rootReducer;

@@ -1,1 +1,1 @@
-export const EXAMPLE = "EXAMPLE";
+export const FETCH_WORKOUT_VALUES = "FETCH_WORKOUT_VALUES";

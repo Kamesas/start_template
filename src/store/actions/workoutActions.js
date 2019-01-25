@@ -1,11 +1,17 @@
 import { fire } from "../../firebase/firebase";
+import { FETCH_WORKOUT_VALUES } from "../types";
 
 const databaseRef = fire.database().ref();
 
 export const addUserValues = newValue => async dispatch => {
-  //console.log(newValue.setChild);
   databaseRef
     .child("semakaleksandr2014@gmail,com")
     .push()
     .set(newValue);
+};
+
+export const fetchWorkoutValues = () => async dispatch => {
+  databaseRef.child("semakaleksandr2014@gmail,com").on("value", snapshot => {
+    dispatch({ type: FETCH_WORKOUT_VALUES, payload: snapshot.val() });
+  });
 };

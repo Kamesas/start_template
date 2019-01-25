@@ -1,10 +1,10 @@
 import React from "react";
 import { Statistic } from "semantic-ui-react";
 
-const TotalValue = () => (
+const TotalValue = ({ sum, exercise }) => (
   <Statistic>
-    <Statistic.Value>155</Statistic.Value>
-    <Statistic.Label>Приседаний</Statistic.Label>
+    <Statistic.Value>{sum.reduce((f, l) => f + l)}</Statistic.Value>
+    <Statistic.Label>{exercise}</Statistic.Label>
   </Statistic>
 );
 
