@@ -6,13 +6,23 @@ import _ from "lodash";
 
 class ListOfValue extends Component {
   state = {};
+
+  totalValue = () => {
+    let t = [];
+    _.map(
+      this.props.workoutValues,
+      (value, i) =>
+        value.exercise === this.props.exercise && t.push(+value.numberOfTimes)
+    );
+    return t;
+  };
+
   render() {
     const { workoutValues } = this.props;
 
     if (workoutValues === "loading") {
       return "loading";
     }
-    let t = [];
 
     return (
       <div>
@@ -23,13 +33,12 @@ class ListOfValue extends Component {
               value.exercise === this.props.exercise && (
                 <List.Item key={i}>
                   <ItemOfValue value={value} />
-                  {t.push(+value.numberOfTimes)}
                 </List.Item>
               )
           )}
         </List>
         <div>
-          <TotalValue sum={t} exercise={this.props.exercise} />
+          <TotalValue sum={this.totalValue()} exercise={this.props.exercise} />
         </div>
       </div>
     );
