@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { Grid } from "semantic-ui-react";
-import Exercises from "./Exercises";
+import Tabs from "./Tabs";
 
 class WorkOut extends Component {
   state = {};
@@ -9,7 +9,7 @@ class WorkOut extends Component {
       <Grid divided="vertically">
         <Grid.Column computer={8} mobile={16}>
           I am
-          <Exercises />
+          <Tabs />
         </Grid.Column>
 
         <Grid.Column computer={8} mobile={16}>
