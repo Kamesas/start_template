@@ -8,7 +8,7 @@ class SignUp extends Component {
       <div>
         <h2>Sign Up</h2>
         <Form>
-          <Form.Field unstackable>
+          <Form.Field>
             <Form.Input label="First name" placeholder="Name" />
             <Form.Input label="Email" placeholder="Email" />
             <Form.Input label="Password" placeholder="Password" />
