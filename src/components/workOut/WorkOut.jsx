@@ -11,6 +11,7 @@ class WorkOut extends Component {
           I am
           <Exercises />
         </Grid.Column>
+
         <Grid.Column computer={8} mobile={16}>
           My opponent
         </Grid.Column>

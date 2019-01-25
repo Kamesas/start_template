@@ -40,7 +40,7 @@ export default class Exercises extends Component {
             </Form.Field>
           </Form.Group>
           <Form.Field>
-            Вид упражнеий: <b>{this.state.value}</b>
+            <b>{this.state.value}</b>
           </Form.Field>
         </Form>
         <AddRepetitions />
