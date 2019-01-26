@@ -3,6 +3,7 @@ import { List } from "semantic-ui-react";
 import ItemOfValue from "./ItemOfValue";
 import TotalValue from "./TotalValue";
 import _ from "lodash";
+import moment from "moment";
 
 class ListOfValue extends Component {
   state = {};
@@ -27,14 +28,13 @@ class ListOfValue extends Component {
     return (
       <div>
         <List horizontal>
-          {_.map(
-            workoutValues,
-            (value, i) =>
-              value.exercise === this.props.exercise && (
-                <List.Item key={i}>
-                  <ItemOfValue value={value} id={i} />
-                </List.Item>
-              )
+          {_.map(workoutValues, (value, i) =>
+            value.exercise === this.props.exercise &&
+            value.date === moment().format("DD MM YYYY") ? (
+              <List.Item key={i}>
+                <ItemOfValue value={value} id={i} />
+              </List.Item>
+            ) : null
           )}
         </List>
         <div>

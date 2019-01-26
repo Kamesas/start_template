@@ -2,7 +2,6 @@ import { fire } from "../../firebase/firebase";
 import { FETCH_WORKOUT_VALUES } from "../types";
 
 const databaseRef = fire.database().ref();
-const firebaseChild = databaseRef.child("semakaleksandr2014@gmail,com");
 
 export const addUserValues = newValue => async dispatch => {
   databaseRef
@@ -18,5 +17,8 @@ export const fetchWorkoutValues = () => async dispatch => {
 };
 
 export const delValue = id => async dispatch => {
-  firebaseChild.child(id).remove();
+  databaseRef
+    .child("semakaleksandr2014@gmail,com")
+    .child(id)
+    .remove();
 };
