@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import { Grid } from "semantic-ui-react";
 import Tabs from "./Tabs";
+import squat from "../../img/squat.svg";
 
 class WorkOut extends Component {
   state = {};
@@ -8,6 +9,7 @@ class WorkOut extends Component {
     return (
       <Grid divided="vertically">
         <Grid.Column computer={8} mobile={16}>
+          <img src={squat} className="App-logo" alt="squat" />
           I am
           <Tabs />
         </Grid.Column>

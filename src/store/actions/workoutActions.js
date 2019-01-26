@@ -2,6 +2,7 @@ import { fire } from "../../firebase/firebase";
 import { FETCH_WORKOUT_VALUES } from "../types";
 
 const databaseRef = fire.database().ref();
+const fireAuth = fire.auth();
 
 export const addUserValues = newValue => async dispatch => {
   databaseRef
@@ -22,3 +23,26 @@ export const delValue = id => async dispatch => {
     .child(id)
     .remove();
 };
+
+export const signUp = (name, email, password) => dispatch => {
+  console.log(name);
+  fireAuth
+    .createUserWithEmailAndPassword(email, password)
+    .then(u => {
+      console.log(u);
+    })
+    .catch(error => {
+      console.log(error.message);
+    });
+};
+
+// export const signIn = () => dispatch => {
+//   authRef
+//     .signInWithPopup(provider)
+//     .then(result => {
+//       alert("Вход выполнен успешно !");
+//     })
+//     .catch(error => {
+//       console.log(error);
+//     });
+// };
