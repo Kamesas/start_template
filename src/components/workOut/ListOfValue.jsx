@@ -32,7 +32,7 @@ class ListOfValue extends Component {
             (value, i) =>
               value.exercise === this.props.exercise && (
                 <List.Item key={i}>
-                  <ItemOfValue value={value} />
+                  <ItemOfValue value={value} id={i} />
                 </List.Item>
               )
           )}

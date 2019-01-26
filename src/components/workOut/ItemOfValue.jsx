@@ -1,14 +1,16 @@
 import React, { Component } from "react";
 import { Icon, Label } from "semantic-ui-react";
+import { connect } from "react-redux";
+import { delValue } from "../../store/actions/workoutActions";
 
 class ItemOfValue extends Component {
   state = {};
   daleteItem = () => {
-    alert("del");
+    this.props.delValue(this.props.id);
   };
   render() {
     const { value } = this.props;
-    //console.log(value);
+
     return (
       <div>
         <Label image>
@@ -22,4 +24,11 @@ class ItemOfValue extends Component {
   }
 }
 
-export default ItemOfValue;
+const mapDispatchToProps = dispatch => ({
+  delValue: id => dispatch(delValue(id))
+});
+
+export default connect(
+  null,
+  mapDispatchToProps
+)(ItemOfValue);

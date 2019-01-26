@@ -3,7 +3,9 @@ import { Statistic } from "semantic-ui-react";
 
 const TotalValue = ({ sum, exercise }) => (
   <Statistic>
-    <Statistic.Value>{sum.reduce((f, l) => f + l)}</Statistic.Value>
+    <Statistic.Value>
+      {sum.length > 0 ? sum.reduce((f, l) => f + l) : 0}
+    </Statistic.Value>
     <Statistic.Label>{exercise}</Statistic.Label>
   </Statistic>
 );

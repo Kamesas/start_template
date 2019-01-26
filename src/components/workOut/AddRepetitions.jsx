@@ -2,7 +2,8 @@ import React, { Component } from "react";
 import { Input, Icon } from "semantic-ui-react";
 import ListOfValue from "./ListOfValue";
 import { connect } from "react-redux";
-//import _ from "lodash";
+import moment from "moment";
+import "moment/locale/ru";
 import {
   addUserValues,
   fetchWorkoutValues
@@ -23,6 +24,8 @@ class AddRepetitions extends Component {
 
   addValue = () => {
     const newValue = {
+      date: moment().format("DD MM YYYY"),
+      time: moment().format("H:mm:ss"),
       exercise: this.props.exercise,
       numberOfTimes: this.state.numberOfTimes
     };
