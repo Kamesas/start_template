@@ -36,13 +36,11 @@ export const signUp = (name, email, password) => dispatch => {
     });
 };
 
-// export const signIn = () => dispatch => {
-//   authRef
-//     .signInWithPopup(provider)
-//     .then(result => {
-//       alert("Вход выполнен успешно !");
-//     })
-//     .catch(error => {
-//       console.log(error);
-//     });
-// };
+export const signIn = (email, password) => dispatch => {
+  fireAuth
+    .signInWithEmailAndPassword(email, password)
+    .then(u => console.log(u))
+    .catch(error => {
+      console.log(error);
+    });
+};

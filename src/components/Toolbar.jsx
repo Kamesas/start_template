@@ -17,8 +17,16 @@ class Toolbar extends Component {
           <Menu.Item link>WorkOut</Menu.Item>
         </NavLink>
 
+        <NavLink to="/login">
+          <Menu.Item link>LogIn </Menu.Item>
+        </NavLink>
+
         <NavLink to="/signup">
           <Menu.Item link>SignUp </Menu.Item>
+        </NavLink>
+
+        <NavLink to="/signup">
+          <Menu.Item link>LogOut</Menu.Item>
         </NavLink>
       </Menu>
     );
