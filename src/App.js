@@ -22,6 +22,7 @@ class App extends Component {
               <Route path="/login" component={LogIn} />
               <Route path="/signup" component={SignUp} />
               <Route path="/logout" component={LogOut} />
+              <Route path="*" component={Main} />
             </Switch>
           </Fragment>
         </BrowserRouter>

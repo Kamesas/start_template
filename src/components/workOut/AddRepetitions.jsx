@@ -6,7 +6,8 @@ import moment from "moment";
 import "moment/locale/ru";
 import {
   addUserValues,
-  fetchWorkoutValues
+  fetchWorkoutValues,
+  fetchworkoutUser
 } from "../../store/actions/workoutActions";
 
 class AddRepetitions extends Component {
@@ -16,6 +17,7 @@ class AddRepetitions extends Component {
 
   componentDidMount() {
     this.props.fetchWorkoutValues();
+    this.props.fetchworkoutUser();
   }
 
   handleChange = (e, { value }) => {
@@ -39,6 +41,7 @@ class AddRepetitions extends Component {
   };
 
   render() {
+    console.log(this.props.workoutUser);
     return (
       <div>
         <Input
@@ -68,12 +71,14 @@ class AddRepetitions extends Component {
 }
 
 const mapStateToProps = state => ({
-  workoutValues: state.workoutValues
+  workoutValues: state.workoutValues,
+  workoutUser: state.workoutUser
 });
 
 const mapDispatchToProps = dispatch => ({
   addUserValues: newValue => dispatch(addUserValues(newValue)),
-  fetchWorkoutValues: () => dispatch(fetchWorkoutValues())
+  fetchWorkoutValues: () => dispatch(fetchWorkoutValues()),
+  fetchworkoutUser: () => dispatch(fetchworkoutUser())
 });
 
 export default connect(
