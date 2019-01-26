@@ -16,8 +16,19 @@ class AddRepetitions extends Component {
   };
 
   componentDidMount() {
-    this.props.fetchWorkoutValues();
     this.props.fetchworkoutUser();
+
+    if (this.props.workoutUser.displayName) {
+      this.props.fetchWorkoutValues(this.props.workoutUser.displayName);
+    }
+  }
+
+  componentDidUpdate(prevProps, prevState) {
+    if (
+      prevProps.workoutUser.displayName !== this.props.workoutUser.displayName
+    ) {
+      this.componentDidMount();
+    }
   }
 
   handleChange = (e, { value }) => {
@@ -26,6 +37,7 @@ class AddRepetitions extends Component {
 
   addValue = () => {
     const newValue = {
+      userLogin: this.props.workoutUser.displayName,
       date: moment().format("DD MM YYYY"),
       time: moment().format("H:mm:ss"),
       exercise: this.props.exercise,
@@ -41,7 +53,8 @@ class AddRepetitions extends Component {
   };
 
   render() {
-    console.log(this.props.workoutUser);
+    // console.log(this.props.workoutUser.displayName);
+    // console.log(this.props.workoutValues);
     return (
       <div>
         <Input
@@ -77,7 +90,8 @@ const mapStateToProps = state => ({
 
 const mapDispatchToProps = dispatch => ({
   addUserValues: newValue => dispatch(addUserValues(newValue)),
-  fetchWorkoutValues: () => dispatch(fetchWorkoutValues()),
+  fetchWorkoutValues: childLoginUser =>
+    dispatch(fetchWorkoutValues(childLoginUser)),
   fetchworkoutUser: () => dispatch(fetchworkoutUser())
 });
 

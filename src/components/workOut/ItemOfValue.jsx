@@ -6,17 +6,14 @@ import { delValue } from "../../store/actions/workoutActions";
 class ItemOfValue extends Component {
   state = {};
   daleteItem = () => {
-    this.props.delValue(this.props.id);
+    this.props.delValue(this.props.id, this.props.value.userLogin);
   };
   render() {
     const { value } = this.props;
-
     return (
       <div>
         <Label image>
-          {/* <Icon name="check" color="green" /> */}
           {value.numberOfTimes && value.numberOfTimes}
-          {/* value.exercise && value.exercise */}
           <Icon name="delete" onClick={this.daleteItem} color="red" />
         </Label>
       </div>
@@ -25,7 +22,7 @@ class ItemOfValue extends Component {
 }
 
 const mapDispatchToProps = dispatch => ({
-  delValue: id => dispatch(delValue(id))
+  delValue: (id, userLogin) => dispatch(delValue(id, userLogin))
 });
 
 export default connect(

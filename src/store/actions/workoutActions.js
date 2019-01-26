@@ -1,25 +1,45 @@
 import { fire } from "../../firebase/firebase";
-import { FETCH_WORKOUT_VALUES, FETCH_WORKOUT_USER } from "../types";
+import {
+  FETCH_WORKOUT_VALUES,
+  FETCH_WORKOUT_USER,
+  FETCH_USERS_LOGIN
+} from "../types";
 
 const databaseRef = fire.database().ref();
 const fireAuth = fire.auth();
 
+const addUsersLogin = login => async dispatch => {
+  databaseRef
+    .child("usersLogin")
+    .push()
+    .set(login);
+};
+
 export const addUserValues = newValue => async dispatch => {
   databaseRef
-    .child("semakaleksandr2014@gmail,com")
+    .child(newValue.userLogin)
     .push()
     .set(newValue);
 };
 
-export const fetchWorkoutValues = () => async dispatch => {
-  databaseRef.child("semakaleksandr2014@gmail,com").on("value", snapshot => {
-    dispatch({ type: FETCH_WORKOUT_VALUES, payload: snapshot.val() });
+export const fetchWorkoutValues = childLoginUser => async dispatch => {
+  databaseRef.child(childLoginUser).on("value", snapshot => {
+    dispatch({
+      type: FETCH_WORKOUT_VALUES,
+      payload: snapshot.val()
+    });
   });
 };
 
-export const delValue = id => async dispatch => {
+export const usersLogin = () => async dispatch => {
+  databaseRef.child("usersLogin").on("value", snapshot => {
+    dispatch({ type: FETCH_USERS_LOGIN, payload: snapshot.val() });
+  });
+};
+
+export const delValue = (id, userLogin) => async dispatch => {
   databaseRef
-    .child("semakaleksandr2014@gmail,com")
+    .child(userLogin)
     .child(id)
     .remove();
 };
@@ -37,13 +57,23 @@ export const fetchworkoutUser = () => dispatch => {
   });
 };
 
+const updateDisplayName = (name, user) =>
+  fireAuth.currentUser.updateProfile({ displayName: name }).then(
+    function() {
+      console.log(user);
+    },
+    function(error) {
+      console.log(error);
+    }
+  );
+
 export const signUp = (name, email, password) => dispatch => {
-  console.log(name);
   fireAuth
     .createUserWithEmailAndPassword(email, password)
-    .then(u => {
-      console.log(u);
+    .then(user => {
+      updateDisplayName(name, user);
     })
+    .then(addUsersLogin(name))
     .catch(error => {
       console.log(error.message);
     });

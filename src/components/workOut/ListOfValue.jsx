@@ -10,10 +10,11 @@ class ListOfValue extends Component {
 
   totalValue = () => {
     let t = [];
-    _.map(
-      this.props.workoutValues,
-      (value, i) =>
-        value.exercise === this.props.exercise && t.push(+value.numberOfTimes)
+    _.map(this.props.workoutValues, (value, i) =>
+      value.exercise === this.props.exercise &&
+      value.date === moment().format("DD MM YYYY")
+        ? t.push(+value.numberOfTimes)
+        : []
     );
     return t;
   };

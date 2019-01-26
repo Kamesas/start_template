@@ -2,15 +2,21 @@ import React, { Component } from "react";
 import { Button } from "semantic-ui-react";
 import { connect } from "react-redux";
 import { logOut } from "../../store/actions/workoutActions";
+import { Redirect } from "react-router-dom";
 
 class LogOut extends Component {
-  state = {};
+  state = { redirect: false };
 
   logOut = () => {
     this.props.logOut();
+    this.setState({ redirect: true });
   };
 
   render() {
+    const { redirect } = this.state;
+    if (redirect) {
+      return <Redirect to="/login" />;
+    }
     return (
       <Button type="submit" onClick={this.logOut}>
         LogOut
