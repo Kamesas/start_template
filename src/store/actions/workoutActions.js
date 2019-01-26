@@ -44,3 +44,14 @@ export const signIn = (email, password) => dispatch => {
       console.log(error);
     });
 };
+
+export const logOut = () => dispatch => {
+  fireAuth
+    .signOut()
+    .then(() => {
+      console.log("Ты вышел из аккаунта !");
+    })
+    .catch(error => {
+      console.log(error);
+    });
+};

@@ -25,7 +25,7 @@ class Toolbar extends Component {
           <Menu.Item link>SignUp </Menu.Item>
         </NavLink>
 
-        <NavLink to="/signup">
+        <NavLink to="/logout">
           <Menu.Item link>LogOut</Menu.Item>
         </NavLink>
       </Menu>

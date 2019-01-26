@@ -5,6 +5,7 @@ import Main from "./components/Main";
 import WorkOut from "./components/workOut/WorkOut";
 import SignUp from "./components/auth/SignUp";
 import LogIn from "./components/auth/LogIn";
+import LogOut from "./components/auth/LogOut";
 import Toolbar from "./components/Toolbar";
 
 class App extends Component {
@@ -20,6 +21,7 @@ class App extends Component {
               <Route path="/workout" component={WorkOut} />
               <Route path="/login" component={LogIn} />
               <Route path="/signup" component={SignUp} />
+              <Route path="/logout" component={LogOut} />
             </Switch>
           </Fragment>
         </BrowserRouter>
