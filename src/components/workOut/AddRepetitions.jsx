@@ -7,6 +7,7 @@ import "moment/locale/ru";
 import {
   addUserValues,
   fetchWorkoutValues,
+  fetchOpponentValues,
   fetchworkoutUser
 } from "../../store/actions/workoutActions";
 
@@ -21,7 +22,6 @@ class AddRepetitions extends Component {
 
   componentDidUpdate(prevProps, prevState) {
     if (prevProps.workoutUser !== this.props.workoutUser) {
-      console.log("displayName", this.props.workoutUser.displayName);
       this.props.fetchWorkoutValues(this.props.workoutUser.displayName);
     }
   }
@@ -81,14 +81,17 @@ class AddRepetitions extends Component {
 
 const mapStateToProps = state => ({
   workoutValues: state.workoutValues,
-  workoutUser: state.workoutUser
+  workoutUser: state.workoutUser,
+  opponentValues: state.opponentValues
 });
 
 const mapDispatchToProps = dispatch => ({
   addUserValues: newValue => dispatch(addUserValues(newValue)),
   fetchWorkoutValues: childLoginUser =>
     dispatch(fetchWorkoutValues(childLoginUser)),
-  fetchworkoutUser: () => dispatch(fetchworkoutUser())
+  fetchworkoutUser: () => dispatch(fetchworkoutUser()),
+  fetchOpponentValues: childLoginUser =>
+    dispatch(fetchWorkoutValues(fetchOpponentValues))
 });
 
 export default connect(

@@ -1,6 +1,7 @@
 import { fire } from "../../firebase/firebase";
 import {
   FETCH_WORKOUT_VALUES,
+  FETCH_OPPONENT_VALUES,
   FETCH_WORKOUT_USER,
   FETCH_USERS_LOGIN
 } from "../types";
@@ -25,6 +26,12 @@ export const addUserValues = newValue => async dispatch => {
 export const fetchWorkoutValues = childLoginUser => async dispatch => {
   databaseRef.child(childLoginUser).on("value", snapshot => {
     dispatch({ type: FETCH_WORKOUT_VALUES, payload: snapshot.val() });
+  });
+};
+
+export const fetchOpponentValues = childLoginUser => async dispatch => {
+  databaseRef.child(childLoginUser).on("value", snapshot => {
+    dispatch({ type: FETCH_OPPONENT_VALUES, payload: snapshot.val() });
   });
 };
 
