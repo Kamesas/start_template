@@ -6,10 +6,17 @@ import { delValue } from "../../store/actions/workoutActions";
 class ItemOfValue extends Component {
   state = {};
   daleteItem = () => {
-    this.props.delValue(this.props.id, this.props.value.userLogin);
+    if (this.props.workoutUser.displayName === this.props.value.userLogin) {
+      this.props.delValue(this.props.id, this.props.value.userLogin);
+    } else {
+      alert(
+        "АГА!!! Хотел удалить данные своего соперника ??? Хрена, за своими следи !"
+      );
+    }
   };
   render() {
     const { value } = this.props;
+
     return (
       <div>
         <Label image>
@@ -21,11 +28,15 @@ class ItemOfValue extends Component {
   }
 }
 
+const mapStateToProps = state => ({
+  workoutUser: state.workoutUser
+});
+
 const mapDispatchToProps = dispatch => ({
   delValue: (id, userLogin) => dispatch(delValue(id, userLogin))
 });
 
 export default connect(
-  null,
+  mapStateToProps,
   mapDispatchToProps
 )(ItemOfValue);

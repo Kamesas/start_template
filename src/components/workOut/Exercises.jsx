@@ -43,7 +43,12 @@ export default class Exercises extends Component {
             <b>{this.state.value}</b>
           </Form.Field>
         </Form>
-        <AddRepetitions exercise={this.state.value} />
+
+        <AddRepetitions
+          exercise={this.state.value}
+          workoutUser={this.props.workoutUser}
+          workoutValues={this.props.workoutValues}
+        />
       </div>
     );
   }

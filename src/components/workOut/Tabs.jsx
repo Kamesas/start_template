@@ -1,22 +1,21 @@
 import React from "react";
-import { Tab } from "semantic-ui-react";
 import Exercises from "./Exercises";
 
-const panes = [
-  {
-    menuItem: "День",
-    render: () => (
-      <Tab.Pane>
-        <Exercises />
-      </Tab.Pane>
-    )
-  },
-  { menuItem: "Неделя", render: () => <Tab.Pane>Неделя</Tab.Pane> },
-  { menuItem: "Месяц", render: () => <Tab.Pane>Месяц</Tab.Pane> }
-];
+import { Tab, Tabs, TabList, TabPanel } from "react-tabs";
+import "react-tabs/style/react-tabs.css";
 
-const TabExampleDefaultActiveIndex = () => (
-  <Tab panes={panes} defaultActiveIndex={0} />
+export default ({ workoutUser, workoutValues }) => (
+  <Tabs>
+    <TabList>
+      <Tab>Title 1</Tab>
+      <Tab>Title 2</Tab>
+    </TabList>
+
+    <TabPanel>
+      <Exercises workoutUser={workoutUser} workoutValues={workoutValues} />
+    </TabPanel>
+    <TabPanel>
+      <h2>Any content 2</h2>
+    </TabPanel>
+  </Tabs>
 );
-
-export default TabExampleDefaultActiveIndex;

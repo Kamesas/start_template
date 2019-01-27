@@ -86,7 +86,7 @@ export const signUp = (name, email, password) => dispatch => {
 export const signIn = (email, password) => dispatch => {
   fireAuth
     .signInWithEmailAndPassword(email, password)
-    .then(u => console.log(u))
+    .then(u => {})
     .catch(error => {
       console.log(error);
     });
@@ -96,7 +96,7 @@ export const logOut = () => dispatch => {
   fireAuth
     .signOut()
     .then(() => {
-      console.log("Ты вышел из аккаунта !");
+      //console.log("Ты вышел из аккаунта !");
     })
     .catch(error => {
       console.log(error);

@@ -4,27 +4,12 @@ import ListOfValue from "./ListOfValue";
 import { connect } from "react-redux";
 import moment from "moment";
 import "moment/locale/ru";
-import {
-  addUserValues,
-  fetchWorkoutValues,
-  fetchOpponentValues,
-  fetchworkoutUser
-} from "../../store/actions/workoutActions";
+import { addUserValues } from "../../store/actions/workoutActions";
 
 class AddRepetitions extends Component {
   state = {
     numberOfTimes: ""
   };
-
-  componentDidMount() {
-    this.props.fetchworkoutUser();
-  }
-
-  componentDidUpdate(prevProps, prevState) {
-    if (prevProps.workoutUser !== this.props.workoutUser) {
-      this.props.fetchWorkoutValues(this.props.workoutUser.displayName);
-    }
-  }
 
   handleChange = (e, { value }) => {
     this.setState({ numberOfTimes: value });
@@ -48,53 +33,50 @@ class AddRepetitions extends Component {
   };
 
   render() {
-    if (this.props.workoutValues === "loading") {
+    const { workoutValues, exercise } = this.props;
+    if (workoutValues === "loading") {
       return "Loading";
     }
     return (
       <div>
-        <Input
-          onChange={this.handleChange}
-          value={this.state.numberOfTimes}
-          icon={
-            <Icon
-              name="add"
-              color="green"
-              onClick={this.addValue}
-              inverted
-              circular
-              link
-            />
-          }
-          placeholder="кол-во повторений"
-        />
-        <div>
-          <ListOfValue
-            workoutValues={this.props.workoutValues}
-            exercise={this.props.exercise}
+        {this.props.workoutUser ? (
+          <Input
+            onChange={this.handleChange}
+            value={this.state.numberOfTimes}
+            icon={
+              <Icon
+                name="add"
+                color="green"
+                onClick={this.addValue}
+                inverted
+                circular
+                link
+              />
+            }
+            placeholder="кол-во повторений"
           />
+        ) : (
+          <Input
+            onChange={this.handleChange}
+            value={this.state.numberOfTimes}
+            disabled
+            icon={<Icon name="add" color="green" inverted circular link />}
+            placeholder="кол-во повторений"
+          />
+        )}
+        <div>
+          <ListOfValue workoutValues={workoutValues} exercise={exercise} />
         </div>
       </div>
     );
   }
 }
 
-const mapStateToProps = state => ({
-  workoutValues: state.workoutValues,
-  workoutUser: state.workoutUser,
-  opponentValues: state.opponentValues
-});
-
 const mapDispatchToProps = dispatch => ({
-  addUserValues: newValue => dispatch(addUserValues(newValue)),
-  fetchWorkoutValues: childLoginUser =>
-    dispatch(fetchWorkoutValues(childLoginUser)),
-  fetchworkoutUser: () => dispatch(fetchworkoutUser()),
-  fetchOpponentValues: childLoginUser =>
-    dispatch(fetchWorkoutValues(fetchOpponentValues))
+  addUserValues: newValue => dispatch(addUserValues(newValue))
 });
 
 export default connect(
-  mapStateToProps,
+  null,
   mapDispatchToProps
 )(AddRepetitions);

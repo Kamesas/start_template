@@ -20,7 +20,7 @@ class ListOfValue extends Component {
   };
 
   render() {
-    const { workoutValues } = this.props;
+    const { workoutValues, exercise } = this.props;
 
     if (workoutValues === "loading") {
       return "loading";
@@ -39,7 +39,7 @@ class ListOfValue extends Component {
           )}
         </List>
         <div>
-          <TotalValue sum={this.totalValue()} exercise={this.props.exercise} />
+          <TotalValue sum={this.totalValue()} exercise={exercise} />
         </div>
       </div>
     );
