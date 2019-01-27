@@ -17,17 +17,12 @@ class AddRepetitions extends Component {
 
   componentDidMount() {
     this.props.fetchworkoutUser();
-
-    if (this.props.workoutUser.displayName) {
-      this.props.fetchWorkoutValues(this.props.workoutUser.displayName);
-    }
   }
 
   componentDidUpdate(prevProps, prevState) {
-    if (
-      prevProps.workoutUser.displayName !== this.props.workoutUser.displayName
-    ) {
-      this.componentDidMount();
+    if (prevProps.workoutUser !== this.props.workoutUser) {
+      console.log("displayName", this.props.workoutUser.displayName);
+      this.props.fetchWorkoutValues(this.props.workoutUser.displayName);
     }
   }
 
@@ -53,8 +48,9 @@ class AddRepetitions extends Component {
   };
 
   render() {
-    // console.log(this.props.workoutUser.displayName);
-    // console.log(this.props.workoutValues);
+    if (this.props.workoutValues === "loading") {
+      return "Loading";
+    }
     return (
       <div>
         <Input

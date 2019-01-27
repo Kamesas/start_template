@@ -24,10 +24,7 @@ export const addUserValues = newValue => async dispatch => {
 
 export const fetchWorkoutValues = childLoginUser => async dispatch => {
   databaseRef.child(childLoginUser).on("value", snapshot => {
-    dispatch({
-      type: FETCH_WORKOUT_VALUES,
-      payload: snapshot.val()
-    });
+    dispatch({ type: FETCH_WORKOUT_VALUES, payload: snapshot.val() });
   });
 };
 
