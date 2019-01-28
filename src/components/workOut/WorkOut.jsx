@@ -3,7 +3,7 @@ import { Grid } from "semantic-ui-react";
 import Tabs from "./Tabs";
 import { connect } from "react-redux";
 //import moment from "moment";
-import "moment/locale/ru";
+//import "moment/locale/ru";
 import UsersLogin from "./UsersLogin";
 import {
   addUserValues,
@@ -14,7 +14,7 @@ import {
 } from "../../store/actions/workoutActions";
 
 class WorkOut extends Component {
-  state = { userLogin: "Test" };
+  state = { userLogin: "Opponent" };
 
   componentDidMount() {
     this.props.fetchworkoutUser();
@@ -24,7 +24,9 @@ class WorkOut extends Component {
 
   componentDidUpdate(prevProps, prevState) {
     if (prevProps.workoutUser !== this.props.workoutUser) {
-      this.props.fetchWorkoutValues(this.props.workoutUser.displayName);
+      this.props.workoutUser
+        ? this.props.fetchWorkoutValues(this.props.workoutUser.displayName)
+        : alert("yf htubcnhfwb.");
     }
     if (prevState.userLogin !== this.state.userLogin) {
       this.props.fetchOpponentValues(this.state.userLogin);
@@ -43,13 +45,11 @@ class WorkOut extends Component {
       allUsersLogin
     } = this.props;
 
-    if (workoutValues === "loading") {
-      return "Loading";
-    }
-    // console.log("workoutValues", workoutValues);
-    // console.log("workoutUser", workoutUser);
-    ///console.log("opponentValues", opponentValues);
-    //console.log("allUsersLogin", allUsersLogin);
+    console.log(workoutValues);
+    console.log(workoutUser && workoutUser.displayName);
+    // console.log(opponentValues);
+    // console.log(allUsersLogin);
+
     return (
       <Grid divided="vertically">
         <Grid.Column computer={8} mobile={16}>
@@ -59,7 +59,7 @@ class WorkOut extends Component {
         </Grid.Column>
 
         <Grid.Column computer={8} mobile={16}>
-          <h3>My opponent</h3>
+          <h3>{this.state.userLogin}</h3>
           <UsersLogin
             allUsersLogin={allUsersLogin}
             selectedUser={this.selectedUser}

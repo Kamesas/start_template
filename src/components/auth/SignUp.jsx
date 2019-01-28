@@ -16,7 +16,7 @@ class SignUp extends Component {
     this.setState({ [e.target.name]: e.target.value });
   };
 
-  varifiLogin = () => {
+  verifiLogin = () => {
     const logins = _.map(this.props.users, us => us);
     const filteredLogin = logins.some(login => login === this.state.name);
     return filteredLogin;
@@ -24,20 +24,20 @@ class SignUp extends Component {
 
   signUp = () => {
     const { name, email, password } = this.state;
-    if (!this.varifiLogin()) {
+    if (!this.verifiLogin()) {
       this.props.signUp(name, email, password);
-      this.setState({ name: "", email: "", password: "", redirect: true });
+      //this.setState({ name: "", email: "", password: "", redirect: true });
     } else {
       alert("Этот логин занят");
     }
   };
 
   render() {
-    this.varifiLogin();
+    this.verifiLogin();
     const { name, email, password, redirect } = this.state;
-    if (redirect) {
-      return <Redirect to="/workout" />;
-    }
+    // if (redirect) {
+    //   return <Redirect to="/workout" />;
+    // }
     return (
       <div>
         <h2>Sign Up</h2>

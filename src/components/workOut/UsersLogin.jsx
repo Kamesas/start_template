@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { List } from "semantic-ui-react";
+import { List, Button } from "semantic-ui-react";
 import _ from "lodash";
 
 class UsersLogin extends Component {
@@ -13,7 +13,10 @@ class UsersLogin extends Component {
     const { allUsersLogin, selectedUser } = this.props;
     return (
       <div>
-        <button onClick={this.showHideMenu}>Menu users</button>
+        <Button floated="right" onClick={this.showHideMenu}>
+          Menu users
+        </Button>
+
         {this.state.menu ? (
           <List celled>
             {_.map(allUsersLogin, (user, i) => (
