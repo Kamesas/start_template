@@ -12,7 +12,8 @@ class AddRepetitions extends Component {
   };
 
   handleChange = (e, { value }) => {
-    this.setState({ numberOfTimes: value });
+    //console.log(value..replace(/[^\d]/g, '').substr(0, 13));
+    this.setState({ numberOfTimes: value.replace(/[^\d]/g, "").substr(0, 3) });
   };
 
   addValue = () => {

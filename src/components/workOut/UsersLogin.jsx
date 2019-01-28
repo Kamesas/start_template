@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import { List, Button } from "semantic-ui-react";
 import _ from "lodash";
+import stl from "./UsersLogin.module.sass";
 
 class UsersLogin extends Component {
   state = { menu: false };
@@ -12,17 +13,22 @@ class UsersLogin extends Component {
   render() {
     const { allUsersLogin, selectedUser } = this.props;
     return (
-      <div>
-        <Button floated="right" onClick={this.showHideMenu}>
+      <div className={stl["opponent-menu"]}>
+        <Button
+          onClick={this.showHideMenu}
+          className={stl["btn-opponent-menu"]}
+        >
           Menu users
         </Button>
 
         {this.state.menu ? (
-          <List celled>
+          <List celled animated className={stl["opponent-menu"]}>
             {_.map(allUsersLogin, (user, i) => (
               <List.Item key={i} onClick={() => selectedUser(user)}>
                 <List.Content>
-                  <List.Header as="a">{user}</List.Header>
+                  <List.Header as="a" id={stl["opponent-menu-a"]}>
+                    {user}
+                  </List.Header>
                 </List.Content>
               </List.Item>
             ))}
@@ -34,3 +40,13 @@ class UsersLogin extends Component {
 }
 
 export default UsersLogin;
+
+// {this.state.menu ? (
+//           <ul className={stl["opponent-menu"]}>
+//             {_.map(allUsersLogin, (user, i) => (
+//               <li key={i} onClick={() => selectedUser(user)}>
+//                 {user}
+//               </li>
+//             ))}
+//           </ul>
+//         ) : null}

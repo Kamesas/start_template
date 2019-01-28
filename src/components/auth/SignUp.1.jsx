@@ -1,18 +1,12 @@
 import React, { Component } from "react";
 import { Button, Form } from "semantic-ui-react";
 import { connect } from "react-redux";
-import { usersLogin } from "../../store/actions/workoutActions";
-import { fire } from "../../firebase/firebase";
+import { signUp, usersLogin } from "../../store/actions/workoutActions";
+import { Redirect } from "react-router-dom";
 import _ from "lodash";
 
 class SignUp extends Component {
-  state = {
-    name: "",
-    email: "",
-    password: "",
-    redirect: false,
-    displayName: ""
-  };
+  state = { name: "", email: "", password: "", redirect: false };
 
   componentDidMount() {
     this.props.usersLogin();
@@ -28,60 +22,25 @@ class SignUp extends Component {
     return filteredLogin;
   };
 
-  updateDisplayName = (name, user) => {
-    const fireAuth = fire.auth();
-    fireAuth.currentUser.updateProfile({ displayName: name }).then(
-      function() {
-        //console.log(user.user.displayName);
-      },
-      function(error) {
-        console.log(error);
-      }
-    );
-  };
-
-  addUsersLogin = login => async dispatch => {
-    const databaseRef = fire.database().ref();
-    databaseRef
-      .child("usersLogin")
-      .push()
-      .set(login);
-  };
-
   signUp = () => {
     const { name, email, password } = this.state;
-    const fireAuth = fire.auth();
     if (!this.verifiLogin()) {
-      fireAuth
-        .createUserWithEmailAndPassword(email, password)
-        .then(user => {
-          this.updateDisplayName(name, user);
-        })
-        .then(this.addUsersLogin(name))
-        .then(this.setState({ displayName: name }))
-        .catch(error => {
-          console.log(error.message);
-          //alert(error);
-        });
-    } else console.log("Этот логин занят");
+      this.props.signUp(name, email, password);
+      //this.setState({ name: "", email: "", password: "", redirect: true });
+    } else {
+      alert("Этот логин занят");
+    }
   };
 
   render() {
     this.verifiLogin();
-    const { name, email, password } = this.state;
-
-    if (fire.auth().currentUser) {
-      return (
-        <div>
-          <h1>{this.state.displayName}</h1>
-          <h2>Успешно зарегистрирован</h2>
-        </div>
-      );
-    }
-
+    const { name, email, password, redirect } = this.state;
+    // if (redirect) {
+    //   return <Redirect to="/workout" />;
+    // }
     return (
       <div>
-        <h2>Регистрация</h2>
+        <h2>Sign Up</h2>
         <Form>
           <Form.Field>
             <Form.Input
@@ -120,6 +79,7 @@ const mapStateToProps = state => ({
 });
 
 const mapDispatchToProps = dispatch => ({
+  signUp: (name, email, password) => dispatch(signUp(name, email, password)),
   usersLogin: () => dispatch(usersLogin())
 });
 

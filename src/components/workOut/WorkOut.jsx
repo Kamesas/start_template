@@ -12,6 +12,7 @@ import {
   fetchworkoutUser,
   usersLogin
 } from "../../store/actions/workoutActions";
+import stl from "./WorkOut.module.sass";
 
 class WorkOut extends Component {
   state = { userLogin: "Opponent" };
@@ -20,13 +21,19 @@ class WorkOut extends Component {
     this.props.fetchworkoutUser();
     this.props.fetchOpponentValues(this.state.userLogin);
     this.props.usersLogin();
+    if (
+      this.props.workoutUser !== "undefinded user" &&
+      this.props.workoutUser
+    ) {
+      this.props.fetchWorkoutValues(this.props.workoutUser.displayName);
+    }
   }
 
   componentDidUpdate(prevProps, prevState) {
     if (prevProps.workoutUser !== this.props.workoutUser) {
       this.props.workoutUser
         ? this.props.fetchWorkoutValues(this.props.workoutUser.displayName)
-        : alert("yf htubcnhfwb.");
+        : alert("Залогинтесьы");
     }
     if (prevState.userLogin !== this.state.userLogin) {
       this.props.fetchOpponentValues(this.state.userLogin);
@@ -45,11 +52,9 @@ class WorkOut extends Component {
       allUsersLogin
     } = this.props;
 
-    console.log(workoutValues);
-    console.log(workoutUser && workoutUser.displayName);
-    // console.log(opponentValues);
-    // console.log(allUsersLogin);
-
+    if (!this.props.fetchWorkoutValues) {
+      return "loading";
+    }
     return (
       <Grid divided="vertically">
         <Grid.Column computer={8} mobile={16}>
@@ -59,11 +64,13 @@ class WorkOut extends Component {
         </Grid.Column>
 
         <Grid.Column computer={8} mobile={16}>
-          <h3>{this.state.userLogin}</h3>
-          <UsersLogin
-            allUsersLogin={allUsersLogin}
-            selectedUser={this.selectedUser}
-          />
+          <div className={stl["opponent-header"]}>
+            <h3>{this.state.userLogin}</h3>
+            <UsersLogin
+              allUsersLogin={allUsersLogin}
+              selectedUser={this.selectedUser}
+            />
+          </div>
           <Tabs workoutValues={opponentValues} />
         </Grid.Column>
       </Grid>

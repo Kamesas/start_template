@@ -9,12 +9,12 @@ import {
 const databaseRef = fire.database().ref();
 const fireAuth = fire.auth();
 
-const addUsersLogin = login => async dispatch => {
-  databaseRef
-    .child("usersLogin")
-    .push()
-    .set(login);
-};
+// const addUsersLogin = login => async dispatch => {
+//   databaseRef
+//     .child("usersLogin")
+//     .push()
+//     .set(login);
+// };
 
 export const addUserValues = newValue => async dispatch => {
   databaseRef
@@ -61,27 +61,27 @@ export const fetchworkoutUser = () => dispatch => {
   });
 };
 
-const updateDisplayName = (name, user) =>
-  fireAuth.currentUser.updateProfile({ displayName: name }).then(
-    function() {
-      console.log(user);
-    },
-    function(error) {
-      console.log(error);
-    }
-  );
+// const updateDisplayName = (name, user) =>
+//   fireAuth.currentUser.updateProfile({ displayName: name }).then(
+//     function() {
+//       console.log(user);
+//     },
+//     function(error) {
+//       console.log(error);
+//     }
+//   );
 
-export const signUp = (name, email, password) => dispatch => {
-  fireAuth
-    .createUserWithEmailAndPassword(email, password)
-    .then(user => {
-      updateDisplayName(name, user);
-    })
-    .then(addUsersLogin(name))
-    .catch(error => {
-      console.log(error.message);
-    });
-};
+// export const signUp = (name, email, password) => dispatch => {
+//   fireAuth
+//     .createUserWithEmailAndPassword(email, password)
+//     .then(user => {
+//       updateDisplayName(name, user);
+//     })
+//     .then(addUsersLogin(name))
+//     .catch(error => {
+//       console.log(error.message);
+//     });
+// };
 
 export const signIn = (email, password) => dispatch => {
   fireAuth
