@@ -16,11 +16,11 @@ class ItemOfValue extends Component {
   };
   render() {
     const { value } = this.props;
-
+    console.log(value);
     return (
       <div>
         <Label image>
-          {value.numberOfTimes && value.numberOfTimes}
+          {value.numberOfTimes ? value.numberOfTimes : "nullll"}
           <Icon name="delete" onClick={this.daleteItem} color="red" />
         </Label>
       </div>

@@ -35,9 +35,7 @@ class AddRepetitions extends Component {
 
   render() {
     const { workoutValues, exercise } = this.props;
-    if (workoutValues === "loading") {
-      return "Loading";
-    }
+
     return (
       <div>
         {this.props.workoutUser ? (
@@ -66,7 +64,11 @@ class AddRepetitions extends Component {
           />
         )}
         <div>
-          <ListOfValue workoutValues={workoutValues} exercise={exercise} />
+          {workoutValues === "loading" ? (
+            "loading"
+          ) : (
+            <ListOfValue workoutValues={workoutValues} exercise={exercise} />
+          )}
         </div>
       </div>
     );
