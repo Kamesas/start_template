@@ -1,19 +1,15 @@
-import React, { Component } from "react";
+import React from "react";
 import { Icon, Label } from "semantic-ui-react";
 
-class ItemOfValueYerstoday extends Component {
-  render() {
-    const { value } = this.props;
-
-    return (
-      <div>
-        <Label image>
-          {value.numberOfTimes && value.numberOfTimes}{" "}
-          <Icon name="check" color="green" />
-        </Label>
-      </div>
-    );
-  }
-}
+const ItemOfValueYerstoday = ({ value }) => {
+  return (
+    <div>
+      <Label image size="mini">
+        {value.numberOfTimes && value.numberOfTimes}{" "}
+        <Icon name="check" color="green" />
+      </Label>
+    </div>
+  );
+};
 
 export default ItemOfValueYerstoday;

@@ -16,7 +16,7 @@ class ItemOfValue extends Component {
   };
   render() {
     const { value } = this.props;
-    console.log(value);
+
     return (
       <div>
         <Label image>
