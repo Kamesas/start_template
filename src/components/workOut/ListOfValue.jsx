@@ -5,6 +5,7 @@ import _ from "lodash";
 import moment from "moment";
 import ItemOfValueYerstoday from "./ItemOfValueYerstoday";
 import stl from "./ListOfValue.module.sass";
+import OneDayForList from "./OneDayForLIst";
 
 class ListOfValue extends Component {
   state = { m: moment() };
@@ -22,7 +23,7 @@ class ListOfValue extends Component {
   returnDay = (date, DayComponent) => {
     const { workoutValues, exercise } = this.props;
     return (
-      <List horizontal>
+      <List horizontal id={stl["list-of-value"]}>
         {_.map(workoutValues, (value, i) =>
           value.exercise === exercise && value.date === date ? (
             <List.Item key={i}>
@@ -63,67 +64,31 @@ class ListOfValue extends Component {
     return (
       <div className={stl["days"]}>
         <div className={stl["days-item"]}>
-          <div className={stl["one-day"]}>
-            <div>
-              <Label color="green">
-                <Icon name="calendar alternate outline" />
-                {toDaysAgo}
-                <Label.Detail>
-                  <Icon name="checkmark" />
-                  {this.totalValue(toDaysAgo)}
-                </Label.Detail>
-              </Label>
-            </div>
-            {this.totalValue(toDaysAgo) > 0 ? (
-              this.returnDay(toDaysAgo, ItemOfValueYerstoday)
-            ) : (
-              <div className={stl["warning-day"]}>
-                <Icon name="warning sign" color="yellow" />
-                тренировки не было
-              </div>
-            )}
-          </div>
-          <div className={stl["one-day"]}>
-            <div>
-              <Label color="green">
-                <Icon name="calendar alternate outline" />
-                {yerstoday}
-                <Label.Detail>
-                  <Icon name="checkmark" />
-                  {this.totalValue(yerstoday)}
-                </Label.Detail>
-              </Label>
-            </div>
-            {this.totalValue(yerstoday) > 0 ? (
-              this.returnDay(yerstoday, ItemOfValueYerstoday)
-            ) : (
-              <div className={stl["warning-day"]}>
-                <Icon name="warning sign" color="yellow" />
-                тренировки не было
-              </div>
-            )}
-          </div>
-          <div className={stl["one-day"]}>
-            <div>
-              <Label color="green">
-                <Icon name="calendar alternate outline" />
-                {today}
-                <Label.Detail>
-                  <Icon name="checkmark" />
-                  {this.totalValue(today)}
-                </Label.Detail>
-              </Label>
-            </div>
-            {this.totalValue(today) > 0 ? (
-              this.returnDay(today, ItemOfValue)
-            ) : (
-              <div className={stl["warning-day"]}>
-                <Icon name="warning sign" color="yellow" />
-                тренировки не было
-              </div>
-            )}
-          </div>
+          <OneDayForList
+            day={toDaysAgo}
+            ItemOfValue={ItemOfValueYerstoday}
+            stl={stl}
+            totalValue={this.totalValue}
+            returnDay={this.returnDay}
+          />
+
+          <OneDayForList
+            day={yerstoday}
+            ItemOfValue={ItemOfValueYerstoday}
+            stl={stl}
+            totalValue={this.totalValue}
+            returnDay={this.returnDay}
+          />
+
+          <OneDayForList
+            day={today}
+            ItemOfValue={ItemOfValue}
+            stl={stl}
+            totalValue={this.totalValue}
+            returnDay={this.returnDay}
+          />
         </div>
+
         <div className={stl["date-picker"]}>
           <div>
             <Icon

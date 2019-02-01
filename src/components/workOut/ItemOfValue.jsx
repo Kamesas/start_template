@@ -20,7 +20,7 @@ class ItemOfValue extends Component {
     return (
       <div>
         <Label image>
-          {value.numberOfTimes ? value.numberOfTimes : "nullll"}
+          {value.numberOfTimes && value.numberOfTimes}
           <Icon name="delete" onClick={this.daleteItem} color="red" />
         </Label>
       </div>
