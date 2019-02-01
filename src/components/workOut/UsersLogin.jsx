@@ -10,6 +10,11 @@ class UsersLogin extends Component {
     this.setState({ menu: !this.state.menu });
   };
 
+  selectedUser = user => {
+    this.props.selectedUser(user);
+    this.setState({ menu: false });
+  };
+
   render() {
     const { allUsersLogin, selectedUser } = this.props;
     return (
@@ -24,7 +29,7 @@ class UsersLogin extends Component {
         {this.state.menu ? (
           <List celled animated className={stl["opponent-menu"]}>
             {_.map(allUsersLogin, (user, i) => (
-              <List.Item key={i} onClick={() => selectedUser(user)}>
+              <List.Item key={i} onClick={() => this.selectedUser(user)}>
                 <List.Content>
                   <List.Header as="a" id={stl["opponent-menu-a"]}>
                     {user}

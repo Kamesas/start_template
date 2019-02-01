@@ -40,9 +40,6 @@ export default class Exercises extends Component {
               />
             </Form.Field>
           </Form.Group>
-          <Form.Field>
-            <b>{this.state.value}</b>
-          </Form.Field>
         </Form>
 
         <AddRepetitions

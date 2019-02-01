@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { Input, Icon } from "semantic-ui-react";
+import { Input, Icon, Label } from "semantic-ui-react";
 import ListOfValue from "./ListOfValue";
 import { connect } from "react-redux";
 import moment from "moment";
@@ -53,14 +53,12 @@ class AddRepetitions extends Component {
             }
             placeholder="кол-во повторений"
           />
-        ) : null}
-        {/* <Input
-          onChange={this.handleChange}
-          value={this.state.numberOfTimes}
-          disabled
-          icon={<Icon name="add" color="green" inverted circular link />}
-          placeholder="кол-во повторений"
-        /> */}
+        ) : (
+          <Label basic color="teal" size="big">
+            {exercise}
+          </Label>
+        )}
+
         <div>
           {workoutValues === "loading" ? (
             "loading"
