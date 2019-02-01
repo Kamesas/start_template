@@ -3,7 +3,7 @@ import { Input, Icon } from "semantic-ui-react";
 import ListOfValue from "./ListOfValue";
 import { connect } from "react-redux";
 import moment from "moment";
-import "moment/locale/ru";
+//import "moment/locale/ru";
 import { addUserValues } from "../../store/actions/workoutActions";
 
 class AddRepetitions extends Component {
@@ -12,7 +12,6 @@ class AddRepetitions extends Component {
   };
 
   handleChange = (e, { value }) => {
-    //console.log(value..replace(/[^\d]/g, '').substr(0, 13));
     this.setState({ numberOfTimes: value.replace(/[^\d]/g, "").substr(0, 3) });
   };
 
@@ -34,11 +33,11 @@ class AddRepetitions extends Component {
   };
 
   render() {
-    const { workoutValues, exercise } = this.props;
+    const { workoutUser, workoutValues, exercise } = this.props;
 
     return (
       <div>
-        {this.props.workoutUser ? (
+        {workoutUser ? (
           <Input
             onChange={this.handleChange}
             value={this.state.numberOfTimes}
@@ -54,15 +53,14 @@ class AddRepetitions extends Component {
             }
             placeholder="кол-во повторений"
           />
-        ) : (
-          <Input
-            onChange={this.handleChange}
-            value={this.state.numberOfTimes}
-            disabled
-            icon={<Icon name="add" color="green" inverted circular link />}
-            placeholder="кол-во повторений"
-          />
-        )}
+        ) : null}
+        {/* <Input
+          onChange={this.handleChange}
+          value={this.state.numberOfTimes}
+          disabled
+          icon={<Icon name="add" color="green" inverted circular link />}
+          placeholder="кол-во повторений"
+        /> */}
         <div>
           {workoutValues === "loading" ? (
             "loading"

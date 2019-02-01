@@ -1,10 +1,10 @@
 import React, { Component } from "react";
-import { List } from "semantic-ui-react";
+import { List, Icon, Label } from "semantic-ui-react";
 import ItemOfValue from "./ItemOfValue";
-import TotalValue from "./TotalValue";
 import _ from "lodash";
 import moment from "moment";
 import ItemOfValueYerstoday from "./ItemOfValueYerstoday";
+import stl from "./ListOfValue.module.sass";
 
 class ListOfValue extends Component {
   state = { m: moment() };
@@ -44,6 +44,10 @@ class ListOfValue extends Component {
     this.setState({ m: this.state.m.add(1, "days") });
   };
 
+  refreshDate = () => {
+    this.setState({ m: moment() });
+  };
+
   render() {
     const { m } = this.state;
     const today = m.clone().format("DD MM YYYY");
@@ -57,36 +61,91 @@ class ListOfValue extends Component {
       .format("DD MM YYYY");
 
     return (
-      <div>
-        <div>
-          <div>
-            <strong>{toDaysAgo}</strong> = {this.totalValue(toDaysAgo)}
+      <div className={stl["days"]}>
+        <div className={stl["days-item"]}>
+          <div className={stl["one-day"]}>
+            <div>
+              <Label color="green">
+                <Icon name="calendar alternate outline" />
+                {toDaysAgo}
+                <Label.Detail>
+                  <Icon name="checkmark" />
+                  {this.totalValue(toDaysAgo)}
+                </Label.Detail>
+              </Label>
+            </div>
+            {this.totalValue(toDaysAgo) > 0 ? (
+              this.returnDay(toDaysAgo, ItemOfValueYerstoday)
+            ) : (
+              <div className={stl["warning-day"]}>
+                <Icon name="warning sign" color="yellow" />
+                тренировки не было
+              </div>
+            )}
           </div>
-          {this.totalValue(toDaysAgo) > 0
-            ? this.returnDay(toDaysAgo, ItemOfValueYerstoday)
-            : "Прогулял"}
-        </div>
-        <div>
-          <div>
-            <strong>{yerstoday}</strong> = {this.totalValue(yerstoday)}
+          <div className={stl["one-day"]}>
+            <div>
+              <Label color="green">
+                <Icon name="calendar alternate outline" />
+                {yerstoday}
+                <Label.Detail>
+                  <Icon name="checkmark" />
+                  {this.totalValue(yerstoday)}
+                </Label.Detail>
+              </Label>
+            </div>
+            {this.totalValue(yerstoday) > 0 ? (
+              this.returnDay(yerstoday, ItemOfValueYerstoday)
+            ) : (
+              <div className={stl["warning-day"]}>
+                <Icon name="warning sign" color="yellow" />
+                тренировки не было
+              </div>
+            )}
           </div>
-          {this.totalValue(yerstoday) > 0
-            ? this.returnDay(yerstoday, ItemOfValueYerstoday)
-            : "Прогулял"}
-        </div>
-        <div>
-          <div>
-            <strong>{today}</strong> = {this.totalValue(today)}
+          <div className={stl["one-day"]}>
+            <div>
+              <Label color="green">
+                <Icon name="calendar alternate outline" />
+                {today}
+                <Label.Detail>
+                  <Icon name="checkmark" />
+                  {this.totalValue(today)}
+                </Label.Detail>
+              </Label>
+            </div>
+            {this.totalValue(today) > 0 ? (
+              this.returnDay(today, ItemOfValue)
+            ) : (
+              <div className={stl["warning-day"]}>
+                <Icon name="warning sign" color="yellow" />
+                тренировки не было
+              </div>
+            )}
           </div>
-          {this.totalValue(today) > 0
-            ? this.returnDay(today, ItemOfValue)
-            : "Прогулял"}
         </div>
-
-        <button onClick={this.downDate}>Down date</button>
-        <button onClick={this.upDate}>Up date</button>
-
-        {/* <TotalValue sum={this.totalValue()} exercise={exercise} /> */}
+        <div className={stl["date-picker"]}>
+          <div>
+            <Icon
+              name="arrow circle up"
+              onClick={this.downDate}
+              size="large"
+              color="blue"
+            />
+            <Icon
+              name="refresh"
+              onClick={this.refreshDate}
+              size="large"
+              color="blue"
+            />
+            <Icon
+              name="arrow circle down"
+              onClick={this.upDate}
+              size="large"
+              color="blue"
+            />
+          </div>
+        </div>
       </div>
     );
   }

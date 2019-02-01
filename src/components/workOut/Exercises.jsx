@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import { Form, Radio } from "semantic-ui-react";
 import AddRepetitions from "./AddRepetitions";
+import stl from "./Exercises.module.sass";
 
 export default class Exercises extends Component {
   state = { value: "присед" };
@@ -8,7 +9,7 @@ export default class Exercises extends Component {
 
   render() {
     return (
-      <div>
+      <div className={stl["exercises"]}>
         <Form>
           <Form.Group inline>
             <Form.Field>
