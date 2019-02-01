@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { List, Icon, Label } from "semantic-ui-react";
+import { List, Icon } from "semantic-ui-react";
 import ItemOfValue from "./ItemOfValue";
 import _ from "lodash";
 import moment from "moment";
@@ -42,7 +42,9 @@ class ListOfValue extends Component {
   };
 
   upDate = () => {
-    this.setState({ m: this.state.m.add(1, "days") });
+    if (this.state.m < moment()) {
+      this.setState({ m: this.state.m.add(1, "days") });
+    }
   };
 
   refreshDate = () => {

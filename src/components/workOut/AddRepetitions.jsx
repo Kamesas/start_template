@@ -3,16 +3,22 @@ import { Input, Icon, Label } from "semantic-ui-react";
 import ListOfValue from "./ListOfValue";
 import { connect } from "react-redux";
 import moment from "moment";
-//import "moment/locale/ru";
 import { addUserValues } from "../../store/actions/workoutActions";
+import stl from "./AddRepetitions.module.sass";
 
 class AddRepetitions extends Component {
   state = {
-    numberOfTimes: ""
+    numberOfTimes: "",
+    error: false
   };
 
   handleChange = (e, { value }) => {
+    this.setState({ error: false });
     this.setState({ numberOfTimes: value.replace(/[^\d]/g, "").substr(0, 3) });
+  };
+
+  removeError = () => {
+    this.setState({ error: false });
   };
 
   addValue = () => {
@@ -27,32 +33,49 @@ class AddRepetitions extends Component {
     if (this.state.numberOfTimes !== "") {
       this.props.addUserValues(newValue);
     } else {
-      alert("Введите значение !");
+      this.setState({ error: true });
     }
     this.setState({ numberOfTimes: "" });
   };
 
   render() {
     const { workoutUser, workoutValues, exercise } = this.props;
+    const { error } = this.state;
 
     return (
       <div>
         {workoutUser ? (
-          <Input
-            onChange={this.handleChange}
-            value={this.state.numberOfTimes}
-            icon={
-              <Icon
-                name="add"
-                color="green"
-                onClick={this.addValue}
-                inverted
-                circular
-                link
-              />
-            }
-            placeholder="кол-во повторений"
-          />
+          <div>
+            <Input
+              onChange={this.handleChange}
+              value={this.state.numberOfTimes}
+              error={error ? error : null}
+              icon={
+                <Icon
+                  name="add"
+                  color="green"
+                  onClick={this.addValue}
+                  inverted
+                  circular
+                  link
+                />
+              }
+              placeholder="кол-во повторений"
+            />
+            {error ? (
+              <div id={stl["warning"]}>
+                <Label
+                  basic
+                  color="red"
+                  pointing
+                  as="a"
+                  onClick={this.removeError}
+                >
+                  Введите значение !
+                </Label>
+              </div>
+            ) : null}
+          </div>
         ) : (
           <Label basic color="teal" size="big">
             {exercise}
