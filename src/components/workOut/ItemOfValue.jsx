@@ -19,7 +19,7 @@ class ItemOfValue extends Component {
 
     return (
       <div>
-        <Label image>
+        <Label image size="medium">
           {value.numberOfTimes && value.numberOfTimes}
           <Icon name="delete" onClick={this.daleteItem} color="red" />
         </Label>
