@@ -1,16 +1,20 @@
 import React, { Component, Fragment } from "react";
-import { Icon, Menu } from "semantic-ui-react";
+import { Icon, Menu, Button } from "semantic-ui-react";
 import { NavLink } from "react-router-dom";
 import { connect } from "react-redux";
 import { fetchworkoutUser } from "../store/actions/workoutActions";
-//import stl from "./toolbar.module.sass";
+import stl from "./toolbar.module.sass";
 
 class Toolbar extends Component {
-  state = {};
+  state = { isShow: false };
 
   componentDidMount() {
     this.props.fetchworkoutUser();
   }
+
+  toggleMenu = () => {
+    this.setState({ isShow: !this.state.isShow });
+  };
 
   render() {
     const authOrNot = this.props.workoutUser ? (
@@ -33,18 +37,35 @@ class Toolbar extends Component {
       </Fragment>
     );
     const { workoutUser } = this.props;
+    const { isShow } = this.state;
     return (
-      <Menu stackable size="mini">
-        <NavLink exact to="/">
-          <Menu.Item link>
-            <Icon name="home" />
-          </Menu.Item>
-        </NavLink>
-        {authOrNot}
-        <Menu.Item position="right">
-          {workoutUser ? workoutUser.email : "Инкогнито"}
-        </Menu.Item>
-      </Menu>
+      <div className={stl["main-menu"]}>
+        <Button
+          content="Menu"
+          primary
+          onClick={this.toggleMenu}
+          id={stl["show-mobile-btn"]}
+          size="mini"
+        />
+        <div className={stl["menu-block"]}>
+          <Menu
+            stackable
+            size="mini"
+            id={stl[isShow ? "" : "hide-mobile-menu"]}
+            onClick={this.toggleMenu}
+          >
+            <NavLink exact to="/">
+              <Menu.Item link>
+                <Icon name="home" />
+              </Menu.Item>
+            </NavLink>
+            {authOrNot}
+            <Menu.Item position="right">
+              {workoutUser ? workoutUser.email : "Инкогнито"}
+            </Menu.Item>
+          </Menu>
+        </div>
+      </div>
     );
   }
 }

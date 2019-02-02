@@ -77,7 +77,12 @@ class AddRepetitions extends Component {
             ) : null}
           </div>
         ) : (
-          <Label basic color="teal" size="big">
+          <Label
+            basic
+            color="teal"
+            size="big"
+            id={stl["exersise-selected-btn"]}
+          >
             {exercise}
           </Label>
         )}
