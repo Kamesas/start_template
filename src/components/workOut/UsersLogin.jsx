@@ -16,7 +16,7 @@ class UsersLogin extends Component {
   };
 
   render() {
-    const { allUsersLogin, selectedUser } = this.props;
+    const { allUsersLogin } = this.props;
     return (
       <div className={stl["opponent-menu"]}>
         <Button

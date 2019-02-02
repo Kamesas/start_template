@@ -96,19 +96,19 @@ class ListOfValue extends Component {
             <Icon
               name="arrow circle up"
               onClick={this.downDate}
-              size="large"
+              size="big"
               color="blue"
             />
             <Icon
               name="refresh"
               onClick={this.refreshDate}
-              size="large"
+              size="big"
               color="blue"
             />
             <Icon
               name="arrow circle down"
               onClick={this.upDate}
-              size="large"
+              size="big"
               color="blue"
             />
           </div>
