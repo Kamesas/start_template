@@ -8,7 +8,7 @@ import stl from "./ListOfValue.module.sass";
 import OneDayForList from "./OneDayForLIst";
 
 class ListOfValue extends Component {
-  state = { m: moment() };
+  state = { m: moment(), startSwipe: null, toggleDate: null };
 
   totalValue = date => {
     let t = [];
@@ -42,13 +42,40 @@ class ListOfValue extends Component {
   };
 
   upDate = () => {
-    if (this.state.m < moment()) {
+    if (this.state.m <= moment()) {
       this.setState({ m: this.state.m.add(1, "days") });
     }
   };
 
   refreshDate = () => {
     this.setState({ m: moment() });
+  };
+
+  _onTouchStart = e => {
+    const touch = e.touches[0];
+    console.log("start", touch.clientY);
+    this.setState({ startSwipe: touch.clientY });
+  };
+
+  _onTouchMove = e => {
+    const touch = e.touches[0];
+    const deferent = touch.clientY - this.state.startSwipe;
+
+    if (deferent > 30) {
+      this.setState({ toggleDate: "up" });
+    } else if (deferent < -30) {
+      this.setState({ toggleDate: "down" });
+    }
+  };
+
+  _onTouchEnd = e => {
+    if (this.state.toggleDate === "up") {
+      this.upDate();
+    } else if (this.state.toggleDate === "down") {
+      this.downDate();
+    }
+
+    this.setState({ startSwipe: null });
   };
 
   render() {
@@ -65,7 +92,12 @@ class ListOfValue extends Component {
 
     return (
       <div className={stl["days"]}>
-        <div className={stl["days-item"]}>
+        <div
+          className={stl["days-item"]}
+          onTouchStart={this._onTouchStart}
+          onTouchMove={this._onTouchMove}
+          onTouchEnd={this._onTouchEnd}
+        >
           <OneDayForList
             day={toDaysAgo}
             ItemOfValue={ItemOfValueYerstoday}
@@ -90,7 +122,6 @@ class ListOfValue extends Component {
             returnDay={this.returnDay}
           />
         </div>
-
         <div className={stl["date-picker"]}>
           <div>
             <Icon
