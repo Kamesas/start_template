@@ -38,16 +38,23 @@ class AddRepetitions extends Component {
     this.setState({ numberOfTimes: "" });
   };
 
+  handleKeyPress = e => {
+    if (e.key === "Enter") {
+      this.addValue();
+    }
+  };
+
   render() {
     const { workoutUser, workoutValues, exercise } = this.props;
     const { error } = this.state;
 
     return (
-      <div>
+      <div onKeyPress={this.handleKeyPress}>
         {workoutUser ? (
           <div>
             <Input
               onChange={this.handleChange}
+              className={stl["inpout-add-value"]}
               value={this.state.numberOfTimes}
               error={error ? error : null}
               icon={
@@ -55,12 +62,13 @@ class AddRepetitions extends Component {
                   name="add"
                   color="green"
                   onClick={this.addValue}
+                  //onKeyPress={this.handleKeyPress}
                   inverted
                   circular
                   link
                 />
               }
-              placeholder="кол-во повторений"
+              placeholder={exercise}
             />
             {error ? (
               <div id={stl["warning"]}>
