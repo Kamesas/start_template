@@ -20,10 +20,12 @@ class UsersLogin extends Component {
     return (
       <div className={stl["opponent-menu"]}>
         <Button
+          basic
+          color="black"
           onClick={this.showHideMenu}
           className={stl["btn-opponent-menu"]}
         >
-          Menu users
+          Users
         </Button>
 
         {this.state.menu ? (

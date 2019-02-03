@@ -42,8 +42,8 @@ class ListOfValue extends Component {
   };
 
   upDate = () => {
-    if (this.state.m <= moment()) {
-      this.setState({ m: this.state.m.add(1, "days") });
+    if (this.state.m <= moment().subtract(1, "days")) {
+      this.setState(({ m }) => ({ m: m.add(1, "days") }));
     }
   };
 
@@ -102,6 +102,7 @@ class ListOfValue extends Component {
             stl={stl}
             totalValue={this.totalValue}
             returnDay={this.returnDay}
+            colorLable="olive"
           />
 
           <OneDayForList
@@ -110,6 +111,7 @@ class ListOfValue extends Component {
             stl={stl}
             totalValue={this.totalValue}
             returnDay={this.returnDay}
+            colorLable="olive"
           />
 
           <OneDayForList
@@ -118,6 +120,7 @@ class ListOfValue extends Component {
             stl={stl}
             totalValue={this.totalValue}
             returnDay={this.returnDay}
+            colorLable="green"
           />
         </div>
         <div className={stl["date-picker"]}>

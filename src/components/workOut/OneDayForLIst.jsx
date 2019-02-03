@@ -1,13 +1,20 @@
 import React from "react";
 import { Icon, Label } from "semantic-ui-react";
 
-const OneDayForList = ({ day, ItemOfValue, stl, totalValue, returnDay }) => {
+const OneDayForList = ({
+  day,
+  ItemOfValue,
+  stl,
+  totalValue,
+  returnDay,
+  colorLable
+}) => {
   return (
     <div className={stl["one-day"]}>
       <div>
         <Label
           basic
-          color="green"
+          color={colorLable}
           size="big"
           className={stl["width-label-date"]}
         >
