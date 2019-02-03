@@ -53,7 +53,6 @@ class ListOfValue extends Component {
 
   _onTouchStart = e => {
     const touch = e.touches[0];
-    console.log("start", touch.clientY);
     this.setState({ startSwipe: touch.clientY });
   };
 
@@ -62,9 +61,9 @@ class ListOfValue extends Component {
     const deferent = touch.clientY - this.state.startSwipe;
 
     if (deferent > 30) {
-      this.setState({ toggleDate: "up" });
-    } else if (deferent < -30) {
       this.setState({ toggleDate: "down" });
+    } else if (deferent < -30) {
+      this.setState({ toggleDate: "up" });
     }
   };
 
@@ -74,8 +73,7 @@ class ListOfValue extends Component {
     } else if (this.state.toggleDate === "down") {
       this.downDate();
     }
-
-    this.setState({ startSwipe: null });
+    this.setState({ toggleDate: null });
   };
 
   render() {

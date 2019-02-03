@@ -5,7 +5,12 @@ const OneDayForList = ({ day, ItemOfValue, stl, totalValue, returnDay }) => {
   return (
     <div className={stl["one-day"]}>
       <div>
-        <Label color="green" size="big" className={stl["width-label-date"]}>
+        <Label
+          basic
+          color="green"
+          size="big"
+          className={stl["width-label-date"]}
+        >
           <Icon name="calendar alternate outline" />
           {day}
           <Label.Detail>
