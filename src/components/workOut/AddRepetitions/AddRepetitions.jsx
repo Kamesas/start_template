@@ -1,9 +1,9 @@
 import React, { Component } from "react";
 import { Input, Icon, Label } from "semantic-ui-react";
-import ListOfValue from "./ListOfValue";
+import ListOfValue from "../ListOfValue/ListOfValue";
 import { connect } from "react-redux";
 import moment from "moment";
-import { addUserValues } from "../../store/actions/workoutActions";
+import { addUserValues } from "../../../store/actions/workoutActions";
 import stl from "./AddRepetitions.module.sass";
 
 class AddRepetitions extends Component {

@@ -1,5 +1,5 @@
 import React from "react";
-import Exercises from "./Exercises";
+import Exercises from "./Exercises/Exercises";
 import Chart from "./Chart/Chart";
 
 import { Tab, Tabs, TabList, TabPanel } from "react-tabs";

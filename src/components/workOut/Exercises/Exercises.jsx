@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { Form, Radio } from "semantic-ui-react";
-import AddRepetitions from "./AddRepetitions";
+import AddRepetitions from "../AddRepetitions/AddRepetitions";
 import stl from "./Exercises.module.sass";
 
 export default class Exercises extends Component {

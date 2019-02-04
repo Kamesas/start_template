@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { Icon, Label } from "semantic-ui-react";
 import { connect } from "react-redux";
-import { delValue } from "../../store/actions/workoutActions";
+import { delValue } from "../../../store/actions/workoutActions";
 
 class ItemOfValue extends Component {
   state = {};

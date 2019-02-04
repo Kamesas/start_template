@@ -4,7 +4,7 @@ import Tabs from "./Tabs";
 import { connect } from "react-redux";
 //import moment from "moment";
 //import "moment/locale/ru";
-import UsersLogin from "./UsersLogin";
+import UsersLogin from "./UsersLogin/UsersLogin";
 import {
   addUserValues,
   fetchWorkoutValues,
