@@ -19,6 +19,7 @@ export default class Exercises extends Component {
                 value="присед"
                 checked={this.state.value === "присед"}
                 onChange={this.handleChange}
+                className={stl[this.state.value === "присед" ? "active" : ""]}
               />
             </Form.Field>
             <Form.Field>
@@ -28,6 +29,9 @@ export default class Exercises extends Component {
                 value="подтягивания"
                 checked={this.state.value === "подтягивания"}
                 onChange={this.handleChange}
+                className={
+                  stl[this.state.value === "подтягивания" ? "active" : ""]
+                }
               />
             </Form.Field>
             <Form.Field>
@@ -37,6 +41,9 @@ export default class Exercises extends Component {
                 value="отжимания"
                 checked={this.state.value === "отжимания"}
                 onChange={this.handleChange}
+                className={
+                  stl[this.state.value === "отжимания" ? "active" : ""]
+                }
               />
             </Form.Field>
           </Form.Group>

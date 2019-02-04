@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import { Icon, Label } from "semantic-ui-react";
 import { connect } from "react-redux";
 import { delValue } from "../../../store/actions/workoutActions";
+import stl from "./ItemOfValue.module.sass";
 
 class ItemOfValue extends Component {
   state = {};
@@ -18,10 +19,14 @@ class ItemOfValue extends Component {
     const { value } = this.props;
 
     return (
-      <div>
-        <Label image size="medium">
-          {value.numberOfTimes && value.numberOfTimes}
+      <div id={stl["label-item-value"]}>
+        <Label basic color="green" size="medium">
+          <span>{value.numberOfTimes && value.numberOfTimes}</span>
           <Icon name="delete" onClick={this.daleteItem} color="red" />
+          <p>
+            <Icon name="clock outline" />
+            {value.time && value.time}
+          </p>
         </Label>
       </div>
     );

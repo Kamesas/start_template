@@ -7,7 +7,8 @@ const OneDayForList = ({
   stl,
   totalValue,
   returnDay,
-  colorLable
+  colorLable,
+  labelSIze
 }) => {
   return (
     <div className={stl["one-day"]}>
@@ -15,7 +16,7 @@ const OneDayForList = ({
         <Label
           basic
           color={colorLable}
-          size="big"
+          size={labelSIze}
           className={stl["width-label-date"]}
         >
           <Icon name="calendar alternate outline" />
@@ -29,9 +30,9 @@ const OneDayForList = ({
       {totalValue(day) > 0 ? (
         returnDay(day, ItemOfValue)
       ) : (
-        <div className={stl["warning-day"]}>
-          <Icon name="warning sign" color="yellow" />
-          тренировки не было
+        <div id={stl["warning-day"]}>
+          <Icon name="warning sign" color="yellow" size="small" />
+          <span>тренировки не было</span>
         </div>
       )}
     </div>

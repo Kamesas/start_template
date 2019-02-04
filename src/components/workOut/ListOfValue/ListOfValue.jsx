@@ -29,9 +29,7 @@ class ListOfValue extends Component {
             <List.Item key={i}>
               <DayComponent value={value} id={i} />
             </List.Item>
-          ) : (
-            0
-          )
+          ) : null
         )}
       </List>
     );
@@ -90,29 +88,31 @@ class ListOfValue extends Component {
 
     return (
       <div className={stl["days"]}>
-        <div
-          className={stl["days-item"]}
-          onTouchStart={this._onTouchStart}
-          onTouchMove={this._onTouchMove}
-          onTouchEnd={this._onTouchEnd}
-        >
-          <OneDayForList
-            day={toDaysAgo}
-            ItemOfValue={ItemOfValueYerstoday}
-            stl={stl}
-            totalValue={this.totalValue}
-            returnDay={this.returnDay}
-            colorLable="olive"
-          />
+        <div className={stl["days-item"]}>
+          <div
+            className={stl["firstTwoDays"]}
+            onTouchStart={this._onTouchStart}
+            onTouchMove={this._onTouchMove}
+            onTouchEnd={this._onTouchEnd}
+          >
+            <OneDayForList
+              day={toDaysAgo}
+              ItemOfValue={ItemOfValueYerstoday}
+              stl={stl}
+              totalValue={this.totalValue}
+              returnDay={this.returnDay}
+              //colorLable="olive"
+            />
 
-          <OneDayForList
-            day={yerstoday}
-            ItemOfValue={ItemOfValueYerstoday}
-            stl={stl}
-            totalValue={this.totalValue}
-            returnDay={this.returnDay}
-            colorLable="olive"
-          />
+            <OneDayForList
+              day={yerstoday}
+              ItemOfValue={ItemOfValueYerstoday}
+              stl={stl}
+              totalValue={this.totalValue}
+              returnDay={this.returnDay}
+              //colorLable="olive"
+            />
+          </div>
 
           <OneDayForList
             day={today}
@@ -121,6 +121,7 @@ class ListOfValue extends Component {
             totalValue={this.totalValue}
             returnDay={this.returnDay}
             colorLable="green"
+            labelSIze="big"
           />
         </div>
         <div className={stl["date-picker"]}>
