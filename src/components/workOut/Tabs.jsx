@@ -9,17 +9,20 @@ import Chart from "./Chart/Chart";
 export default ({ workoutUser, workoutValues }) => (
   <Tabs>
     <TabList>
-      <Tab>Сегодня</Tab>
       <Tab>Календар</Tab>
+      <Tab>Сегодня</Tab>
+
       <Tab>График</Tab>
     </TabList>
 
     <TabPanel>
-      <Exercises workoutUser={workoutUser} workoutValues={workoutValues} />
-    </TabPanel>
-    <TabPanel>
       <Calendar />
     </TabPanel>
+
+    <TabPanel>
+      <Exercises workoutUser={workoutUser} workoutValues={workoutValues} />
+    </TabPanel>
+
     <TabPanel>
       <Chart workoutUser={workoutUser} workoutValues={workoutValues} />
     </TabPanel>

@@ -1,8 +1,9 @@
 import React from "react";
-import leftArrow from "./img/left-arrow.svg";
-import rigthArrow from "./img/right-arrow.svg";
+import leftArrow from "../img/left-arrow.svg";
+import rigthArrow from "../img/right-arrow.svg";
+import stl from "./CalendarHeader.module.sass";
 
-const CalendarHeader = ({ stl, prevDate, nextDate, moment }) => {
+const CalendarHeader = ({ prevDate, nextDate, moment }) => {
   return (
     <div className={stl["calendar-header"]}>
       <img
@@ -11,7 +12,7 @@ const CalendarHeader = ({ stl, prevDate, nextDate, moment }) => {
         onClick={prevDate}
         className={stl["left-arrow"]}
       />
-      <span>{moment.format("D MMMM YYYY")}</span>
+      <span>{moment.format("MMMM YYYY")}</span>
       <img
         src={rigthArrow}
         alt="rigthArrow"
