@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import moment from "moment";
+import "moment/locale/ru";
 
 // https://momentjs.com/docs/#/manipulating/  ===>  chapter Manipulate
 
@@ -7,13 +8,15 @@ function DateSwitch(WrapComponent) {
   return class ChangeMoment extends Component {
     state = { moment: moment() };
 
-    downDate = () => {
-      this.setState({ moment: this.state.moment.subtract(1, "month") });
+    nextDate = () => {
+      this.setState({ moment: this.state.moment.add(1, "month") });
       console.log(this.state.moment);
     };
 
-    upDate = () => {
-      this.setState(({ moment }) => ({ moment: moment.add(1, "month") }));
+    prevDate = () => {
+      this.setState(({ moment }) => ({
+        moment: moment.subtract(1, "month")
+      }));
     };
 
     refreshDate = () => {
@@ -25,8 +28,8 @@ function DateSwitch(WrapComponent) {
         <WrapComponent
           {...this.props}
           {...this.state}
-          downDate={this.downDate}
-          upDate={this.upDate}
+          nextDate={this.nextDate}
+          prevDate={this.prevDate}
           refreshDate={this.refreshDate}
           moment={this.state.moment}
         />
