@@ -90,10 +90,10 @@ class ListOfValue extends Component {
       <div className={stl["days"]}>
         <div className={stl["days-item"]}>
           <div
-            className={stl["firstTwoDays"]}
-            onTouchStart={this._onTouchStart}
-            onTouchMove={this._onTouchMove}
-            onTouchEnd={this._onTouchEnd}
+          // className={stl["firstTwoDays"]}
+          // onTouchStart={this._onTouchStart}
+          // onTouchMove={this._onTouchMove}
+          // onTouchEnd={this._onTouchEnd}
           >
             <OneDayForList
               day={toDaysAgo}

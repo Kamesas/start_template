@@ -7,12 +7,14 @@ import stl from "./ItemOfValue.module.sass";
 class ItemOfValue extends Component {
   state = {};
   daleteItem = () => {
-    if (this.props.workoutUser.displayName === this.props.value.userLogin) {
-      this.props.delValue(this.props.id, this.props.value.userLogin);
-    } else {
-      alert(
-        "АГА!!! Хотел удалить данные своего соперника ??? Хрена, за своими следи !"
-      );
+    if (this.props.workoutUser) {
+      if (this.props.workoutUser.displayName === this.props.value.userLogin) {
+        this.props.delValue(this.props.id, this.props.value.userLogin);
+      } else {
+        alert(
+          "АГА!!! Хотел удалить данные своего соперника ??? Хрена, за своими следи !"
+        );
+      }
     }
   };
   render() {
