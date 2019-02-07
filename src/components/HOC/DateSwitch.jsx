@@ -8,14 +8,23 @@ function DateSwitch(WrapComponent) {
   return class ChangeMoment extends Component {
     state = { moment: moment() };
 
-    nextDate = () => {
+    nextMonth = () => {
       this.setState({ moment: this.state.moment.add(1, "month") });
-      console.log(this.state.moment);
     };
 
-    prevDate = () => {
+    nextWeek = () => {
+      this.setState({ moment: this.state.moment.add(1, "week") });
+    };
+
+    prevMonth = () => {
       this.setState(({ moment }) => ({
         moment: moment.subtract(1, "month")
+      }));
+    };
+
+    prevWeek = () => {
+      this.setState(({ moment }) => ({
+        moment: moment.subtract(1, "week")
       }));
     };
 
@@ -28,10 +37,12 @@ function DateSwitch(WrapComponent) {
         <WrapComponent
           {...this.props}
           {...this.state}
-          nextDate={this.nextDate}
-          prevDate={this.prevDate}
+          nextMonth={this.nextMonth}
+          prevMonth={this.prevMonth}
           refreshDate={this.refreshDate}
           moment={this.state.moment}
+          nextWeek={this.nextWeek}
+          prevWeek={this.prevWeek}
         />
       );
     }
@@ -39,34 +50,3 @@ function DateSwitch(WrapComponent) {
 }
 
 export default DateSwitch;
-// function DateSwitch(WrapComponent) {
-//   return class ChangeMoment extends Component {
-//     state = { moment: moment() };
-
-//     downDate = (numStep = 1, nameStep = "month") => {
-//       this.setState({ m: this.state.m.subtract(numStep, "nameStep") });
-//     };
-
-//     upDate = (numStep = 1, nameStep = "month") => {
-//       this.setState(({ m }) => ({ m: m.add(numStep, "nameStep") }));
-//     };
-
-//     refreshDate = () => {
-//       this.setState({ m: moment() });
-//     };
-
-//     render() {
-//       return (
-//         <WrapComponent
-//           {...this.props}
-//           {...this.state}
-//           downDate={this.downDate}
-//           upDate={this.upDate}
-//           refreshDate={this.refreshDate}
-//         />
-//       );
-//     }
-//   };
-// }
-
-// export default DateSwitch;

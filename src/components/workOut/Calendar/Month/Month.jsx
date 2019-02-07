@@ -1,16 +1,18 @@
 import React from "react";
 import stl from "./Month.module.sass";
+import DayFromMonth from "./DayFromMonth/DayFromMonth";
 
 const Month = ({ bodyCalendar }) => {
   return (
     <div className={stl["render-month"]}>
-      {bodyCalendar.map((v, i) => {
+      {bodyCalendar.map((day, i) => {
         return (
           <div
-            key={v.format("DD MM YYYY")}
-            className={stl[v.day() === 0 ? "sunday" : ""]}
+            key={day.format("DD MM YYYY")}
+            className={stl[day.day() === 0 ? "sunday" : ""]}
           >
-            {v.date()} {/* v.format("dd") */}
+            {/* v.format("dd") */}
+            <DayFromMonth day={day} />
           </div>
         );
       })}

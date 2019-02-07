@@ -4,6 +4,8 @@ import stl from "./Calendar.module.sass";
 import CalendarHeader from "./CalendarHeader/CalendarHeader";
 import Month from "./Month/Month";
 import Week from "./Week/Week";
+import SwitchInput from "./otherComponent/SwitchInput";
+import refresh from "./img/refresh.svg";
 
 class Calendar extends Component {
   state = { isWeek: false };
@@ -43,20 +45,30 @@ class Calendar extends Component {
     return daysOfMonth;
   };
 
-  toggleWeek = () => {
-    this.setState({ isWeek: !this.state.isWeek });
+  toggleWeek = state => {
+    this.setState({ isWeek: state });
   };
 
   render() {
-    const { moment, prevDate, nextDate } = this.props;
+    const {
+      moment,
+      prevWeek,
+      prevMonth,
+      nextWeek,
+      nextMonth,
+      refreshDate
+    } = this.props;
     const { isWeek } = this.state;
     return (
-      <div>
-        <button onClick={this.toggleWeek}>{isWeek ? "Месяц" : "Неделя"}</button>
+      <div className={stl["calendar"]}>
+        <div className={stl["toolbar"]}>
+          <SwitchInput isWeek={isWeek} toggleWeek={this.toggleWeek} />
+          <img src={refresh} alt="refresh" onClick={refreshDate} />
+        </div>
         <CalendarHeader
           moment={moment}
-          prevDate={prevDate}
-          nextDate={nextDate}
+          prevDate={isWeek ? prevWeek : prevMonth}
+          nextDate={isWeek ? nextWeek : nextMonth}
           stl={stl}
         />
 
