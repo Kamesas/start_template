@@ -1,28 +1,29 @@
-import React from "react";
-import "./SwitchInput.css";
+import React, { Component } from "react";
+import Switch from "react-switch";
 
-const SwitchInput = ({ toggleWeek }) => {
-  const toggleWeekMonth = e => {
-    toggleWeek(e.target.checked);
+// https://www.npmjs.com/package/react-switch
+
+class SwitchInput extends Component {
+  state = {
+    checked: false
   };
 
-  return (
-    <div className="onoffswitch-container">
-      <div className="onoffswitch">
-        <input
-          type="checkbox"
-          name="onoffswitch"
-          className="onoffswitch-checkbox"
-          id="myonoffswitch"
-          onChange={toggleWeekMonth}
+  handleChange = checked => {
+    this.setState({ checked });
+    this.props.toggleWeek(checked);
+  };
+
+  render() {
+    return (
+      <label htmlFor="normal-switch">
+        <Switch
+          onChange={this.handleChange}
+          checked={this.state.checked}
+          id="normal-switch"
         />
-        <label className="onoffswitch-label" htmlFor="myonoffswitch">
-          <span className="onoffswitch-inner" />
-          <span className="onoffswitch-switch" />
-        </label>
-      </div>
-    </div>
-  );
-};
+      </label>
+    );
+  }
+}
 
 export default SwitchInput;

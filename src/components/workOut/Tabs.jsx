@@ -16,7 +16,7 @@ export default ({ workoutUser, workoutValues }) => (
     </TabList>
 
     <TabPanel>
-      <Calendar />
+      <Calendar workoutUser={workoutUser} workoutValues={workoutValues} />
     </TabPanel>
 
     <TabPanel>

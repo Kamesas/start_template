@@ -62,17 +62,21 @@ class Calendar extends Component {
     return (
       <div className={stl["calendar"]}>
         <div className={stl["toolbar"]}>
-          <SwitchInput isWeek={isWeek} toggleWeek={this.toggleWeek} />
+          <div className={stl["toolbar-switch-container"]}>
+            <SwitchInput isWeek={isWeek} toggleWeek={this.toggleWeek} />
+          </div>
           <img src={refresh} alt="refresh" onClick={refreshDate} />
         </div>
-        <CalendarHeader
-          moment={moment}
-          prevDate={isWeek ? prevWeek : prevMonth}
-          nextDate={isWeek ? nextWeek : nextMonth}
-          stl={stl}
-        />
+        <div className={stl["calendar-header-container"]}>
+          <CalendarHeader
+            moment={moment}
+            prevDate={!isWeek ? prevWeek : prevMonth}
+            nextDate={!isWeek ? nextWeek : nextMonth}
+            stl={stl}
+          />
+        </div>
 
-        {isWeek ? (
+        {!isWeek ? (
           <Week bodyCalendar={this.bodyCalendar("week")} />
         ) : (
           <Month bodyCalendar={this.bodyCalendar()} />

@@ -1,16 +1,17 @@
 import React from "react";
 import stl from "./Week.module.sass";
+import DayForWeek from "./DayForWeek/DayForWeek";
 
 const Week = ({ bodyCalendar }) => {
   return (
     <div className={stl["render-week"]}>
-      {bodyCalendar.map((v, i) => {
+      {bodyCalendar.map((day, i) => {
         return (
           <div
-            key={v.format("DD MM YYYY")}
-            className={stl[v.day() === 0 ? "sunday" : ""]}
+            key={day.format("DD MM YYYY")}
+            className={stl[day.day() === 0 ? "sunday" : ""]}
           >
-            {v.date()} {/* v.format("dd") */}
+            <DayForWeek day={day} />
           </div>
         );
       })}
