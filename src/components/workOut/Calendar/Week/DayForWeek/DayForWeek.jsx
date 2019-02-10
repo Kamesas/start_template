@@ -15,10 +15,11 @@ class DayForWeek extends Component {
       day.format("MM YY") === currentMonth ? stl["current-month"] : "";
     const currtDay =
       day.format("DD MM YYYY") === currentDay ? stl["current-day"] : "";
+    const sunday = stl[day.day() === 0 ? "sunday" : ""];
 
     return (
-      <div className={`${dayForWeek} ${currMonth} ${currtDay}`}>
-        {day.format("dd")} {day.date()}
+      <div className={`${dayForWeek} ${currMonth} ${currtDay} ${sunday}`}>
+        <span>{day.format("dd")}</span> {day.date()}
       </div>
     );
   }

@@ -7,10 +7,7 @@ const Week = ({ bodyCalendar }) => {
     <div className={stl["render-week"]}>
       {bodyCalendar.map((day, i) => {
         return (
-          <div
-            key={day.format("DD MM YYYY")}
-            className={stl[day.day() === 0 ? "sunday" : ""]}
-          >
+          <div key={day.format("DD MM YYYY")}>
             <DayForWeek day={day} />
           </div>
         );
