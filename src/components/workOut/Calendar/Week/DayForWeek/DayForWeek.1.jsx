@@ -3,7 +3,6 @@ import stl from "./DayForWeek.module.sass";
 import moment from "moment";
 import _ from "lodash";
 import OneExercise from "./OneExersice";
-import { optionsExercises } from "../../../Exercises/db_exercises";
 
 const currentDay = moment().format("DD MM YYYY");
 const currentMonth = moment().format("MM YY");
@@ -71,17 +70,30 @@ class DayForWeek extends Component {
 
         {isShow ? (
           <div>
-            {optionsExercises.map(exercise => {
-              return (
-                <OneExercise
-                  key={exercise.key}
-                  stl={stl}
-                  exerciseName={exercise.text}
-                  renderSum={this.renderSum(exercise.value)}
-                  renderDayValue={this.renderDayValue(exercise.value)}
-                />
-              );
-            })}
+            <OneExercise
+              stl={stl}
+              exerciseName="Приседания"
+              renderSum={this.renderSum()}
+              renderDayValue={this.renderDayValue()}
+            />
+            <OneExercise
+              stl={stl}
+              exerciseName="Отжимания"
+              renderSum={this.renderSum("отжимания")}
+              renderDayValue={this.renderDayValue("отжимания")}
+            />
+            <OneExercise
+              stl={stl}
+              exerciseName="Подтягивания"
+              renderSum={this.renderSum("подтягивания")}
+              renderDayValue={this.renderDayValue("подтягивания")}
+            />
+            <OneExercise
+              stl={stl}
+              exerciseName="Кисть"
+              renderSum={this.renderSum("кисть")}
+              renderDayValue={this.renderDayValue("кисть")}
+            />
           </div>
         ) : null}
       </div>

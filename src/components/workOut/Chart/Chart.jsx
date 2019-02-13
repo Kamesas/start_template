@@ -2,17 +2,18 @@ import React from "react";
 import { Line } from "react-chartjs-2";
 import { monthName } from "./allMonthValue";
 import { datasetsForChartDate } from "./dateForChart";
+import { optionsExercises } from "../Exercises/db_exercises";
 
 const Chart = ({ workoutValues }) => {
+  const datasetsItems = optionsExercises.map(exercise => {
+    return datasetsForChartDate(exercise.value, exercise.color, workoutValues);
+  });
+
   const data = {
     labels: monthName,
-    datasets: [
-      datasetsForChartDate("присед", "blue", workoutValues),
-      datasetsForChartDate("подтягивания", "red", workoutValues),
-      datasetsForChartDate("отжимания", "grey", workoutValues),
-      datasetsForChartDate("кисть", "orange", workoutValues)
-    ]
+    datasets: datasetsItems
   };
+
   return (
     <div>
       <Line data={data} />
