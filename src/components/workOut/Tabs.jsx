@@ -1,10 +1,11 @@
 import React from "react";
-
 import { Tab, Tabs, TabList, TabPanel } from "react-tabs";
 import "react-tabs/style/react-tabs.css";
 import Exercises from "./Exercises/Exercises";
 import Calendar from "./Calendar/Calendar";
 import Chart from "./Chart/Chart";
+
+export const UserValue = React.createContext();
 
 export default ({ workoutUser, workoutValues }) => (
   <Tabs>
@@ -16,7 +17,10 @@ export default ({ workoutUser, workoutValues }) => (
     </TabList>
 
     <TabPanel>
-      <Calendar workoutUser={workoutUser} workoutValues={workoutValues} />
+      <UserValue.Provider value={{ workoutValues }}>
+        <Calendar /* workoutUser={workoutUser} workoutValues={workoutValues} */
+        />
+      </UserValue.Provider>
     </TabPanel>
 
     <TabPanel>

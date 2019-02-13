@@ -1,14 +1,25 @@
 import React from "react";
 import stl from "./Week.module.sass";
 import DayForWeek from "./DayForWeek/DayForWeek";
+import { UserValue } from "../../Tabs";
+import Accordeon from "../hoc/Accardion";
 
-const Week = ({ bodyCalendar }) => {
+const Week = ({ bodyCalendar, toggleOpenItem, dayId }) => {
   return (
     <div className={stl["render-week"]}>
       {bodyCalendar.map((day, i) => {
         return (
           <div key={day.format("DD MM YYYY")}>
-            <DayForWeek day={day} />
+            <UserValue.Consumer>
+              {({ workoutValues }) => (
+                <DayForWeek
+                  day={day}
+                  workoutVal={workoutValues}
+                  toggleOpenItem={toggleOpenItem}
+                  isShow={dayId === day.format("DD MM YYYY") ? true : false}
+                />
+              )}
+            </UserValue.Consumer>
           </div>
         );
       })}
@@ -16,4 +27,4 @@ const Week = ({ bodyCalendar }) => {
   );
 };
 
-export default Week;
+export default Accordeon(Week);
