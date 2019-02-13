@@ -1,63 +1,34 @@
 import React, { Component } from "react";
-import { Form, Radio } from "semantic-ui-react";
+import { Form, Radio, Select } from "semantic-ui-react";
 import AddRepetitions from "../AddRepetitions/AddRepetitions";
 import stl from "./Exercises.module.sass";
 
+const options = [
+  { key: "squad", text: "Присед", value: "присед" },
+  { key: "chin-ups", text: "Подтягивания", value: "подтягивания" },
+  { key: "pushups", text: "Отжимания", value: "отжимания" },
+  { key: "bars", text: "Брусья", value: "брусья" },
+  { key: "dumbbells", text: "Гантели", value: "гантели" },
+  { key: "hand", text: "Кисть", value: "кисть" },
+  { key: "rope", text: "Скакалка", value: "скакалка" }
+];
+
 export default class Exercises extends Component {
   state = { value: "присед" };
+
   handleChange = (e, { value }) => this.setState({ value });
 
   render() {
+    console.log(this.state.value);
     return (
       <div className={stl["exercises"]}>
-        <Form>
-          <Form.Group inline>
-            <Form.Field>
-              <Radio
-                label="Присед"
-                name="radioGroup"
-                value="присед"
-                checked={this.state.value === "присед"}
-                onChange={this.handleChange}
-                className={stl[this.state.value === "присед" ? "active" : ""]}
-              />
-            </Form.Field>
-            <Form.Field>
-              <Radio
-                label="Подтягиваня"
-                name="radioGroup"
-                value="подтягивания"
-                checked={this.state.value === "подтягивания"}
-                onChange={this.handleChange}
-                className={
-                  stl[this.state.value === "подтягивания" ? "active" : ""]
-                }
-              />
-            </Form.Field>
-            <Form.Field>
-              <Radio
-                label="Отжимания"
-                name="radioGroup"
-                value="отжимания"
-                checked={this.state.value === "отжимания"}
-                onChange={this.handleChange}
-                className={
-                  stl[this.state.value === "отжимания" ? "active" : ""]
-                }
-              />
-            </Form.Field>
-            <Form.Field>
-              <Radio
-                label="Кистевой эспанд."
-                name="radioGroup"
-                value="кисть"
-                checked={this.state.value === "кисть"}
-                onChange={this.handleChange}
-                className={stl[this.state.value === "кисть" ? "active" : ""]}
-              />
-            </Form.Field>
-          </Form.Group>
-        </Form>
+        <Select
+          compact
+          options={options}
+          defaultValue={this.state.value}
+          onChange={this.handleChange}
+          className={stl["exercises-select"]}
+        />
 
         <AddRepetitions
           exercise={this.state.value}
