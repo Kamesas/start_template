@@ -1,8 +1,8 @@
-.day-for-week
-  background-color: #eee
+.day-for-week  
   color: #aaa 
   .day-exercise    
     > div
+      background-color: #eee
       display: flex
       padding-bottom: 10px
       padding: 5px
@@ -19,6 +19,7 @@
   font-weight: bold
   padding: 10px 5px
   background-color: #bbb
+  border-radius: 5px 5px 0 0
   border-bottom: 1px solid #fff
   cursor: pointer
 
@@ -39,10 +40,9 @@
 .current-month
   color: #000
 
-.current-day
-  border: 2px solid green
-  border-radius: 5px
-
+.current-day  
+  > .day-and-date
+      color: green
 .sunday
   span
     color: red

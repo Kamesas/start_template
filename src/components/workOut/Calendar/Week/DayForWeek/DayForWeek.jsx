@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import stl from "./DayForWeek.module.sass";
 import moment from "moment";
 import _ from "lodash";
+import OneExercise from "./OneExersice";
 
 const currentDay = moment().format("DD MM YYYY");
 const currentMonth = moment().format("MM YY");
@@ -19,7 +20,7 @@ class DayForWeek extends Component {
       ) {
         return (
           <div key={i}>
-            <div>{value.numberOfTimes}</div>
+            <div onClick={() => alert(i)}>{value.numberOfTimes}</div>
             <span>{value.time}</span>
           </div>
         );
@@ -63,38 +64,33 @@ class DayForWeek extends Component {
         >
           <span>{day.format("dd")}</span> <span>{day.date()}</span>
         </div>
+
         {isShow ? (
           <div>
-            {this.renderSum() !== 0 ? (
-              <div className={stl["day-exercise"]}>
-                <div>
-                  Присед <span>{this.renderSum()}</span>
-                </div>
-                <div className={stl["render-day-value"]}>
-                  {this.renderDayValue()}
-                </div>
-              </div>
-            ) : null}
-            {this.renderSum("отжимания") !== 0 ? (
-              <div className={stl["day-exercise"]}>
-                <div>
-                  Отжимания <span>{this.renderSum("отжимания")}</span>
-                </div>
-                <div className={stl["render-day-value"]}>
-                  {this.renderDayValue("отжимания")}
-                </div>
-              </div>
-            ) : null}
-            {this.renderSum("подтягивания") !== 0 ? (
-              <div className={stl["day-exercise"]}>
-                <div>
-                  Подтягивания <span>{this.renderSum("подтягивания")}</span>
-                </div>
-                <div className={stl["render-day-value"]}>
-                  {this.renderDayValue("подтягивания")}
-                </div>
-              </div>
-            ) : null}
+            <OneExercise
+              stl={stl}
+              exerciseName="Приседания"
+              renderSum={this.renderSum()}
+              renderDayValue={this.renderDayValue()}
+            />
+            <OneExercise
+              stl={stl}
+              exerciseName="Отжимания"
+              renderSum={this.renderSum("отжимания")}
+              renderDayValue={this.renderDayValue("отжимания")}
+            />
+            <OneExercise
+              stl={stl}
+              exerciseName="Подтягивания"
+              renderSum={this.renderSum("подтягивания")}
+              renderDayValue={this.renderDayValue("подтягивания")}
+            />
+            <OneExercise
+              stl={stl}
+              exerciseName="Кисть"
+              renderSum={this.renderSum("кисть")}
+              renderDayValue={this.renderDayValue("кисть")}
+            />
           </div>
         ) : null}
       </div>

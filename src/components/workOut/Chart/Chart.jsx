@@ -9,7 +9,8 @@ const Chart = ({ workoutValues }) => {
     datasets: [
       datasetsForChartDate("присед", "blue", workoutValues),
       datasetsForChartDate("подтягивания", "red", workoutValues),
-      datasetsForChartDate("отжимания", "grey", workoutValues)
+      datasetsForChartDate("отжимания", "grey", workoutValues),
+      datasetsForChartDate("кисть", "orange", workoutValues)
     ]
   };
   return (

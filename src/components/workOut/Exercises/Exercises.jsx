@@ -46,6 +46,16 @@ export default class Exercises extends Component {
                 }
               />
             </Form.Field>
+            <Form.Field>
+              <Radio
+                label="Кистевой эспанд."
+                name="radioGroup"
+                value="кисть"
+                checked={this.state.value === "кисть"}
+                onChange={this.handleChange}
+                className={stl[this.state.value === "кисть" ? "active" : ""]}
+              />
+            </Form.Field>
           </Form.Group>
         </Form>
 
