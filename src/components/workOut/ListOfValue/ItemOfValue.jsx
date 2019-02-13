@@ -25,7 +25,7 @@ class ItemOfValue extends Component {
         <Label basic color="green" size="medium">
           <span>
             {value.numberOfTimes && value.numberOfTimes}
-            {value.weight ? `/${value.weight}кг` : null}
+            {value.weight ? ` (${value.weight}кг)` : null}
           </span>
           <Icon name="delete" onClick={this.daleteItem} color="red" />
           <p>

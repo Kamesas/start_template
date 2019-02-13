@@ -7,7 +7,7 @@ const OneExercise = ({ stl, renderSum, renderDayValue, exerciseName }) => {
   return (
     <div className={stl["day-exercise"]}>
       <div>
-        {exerciseName} <span>{renderSum}</span>
+        {exerciseName} <span>{renderSum} повторений за день</span>
       </div>
       <div className={stl["render-day-value"]}>{renderDayValue}</div>
     </div>

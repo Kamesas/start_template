@@ -56,32 +56,34 @@ class AddRepetitions extends Component {
       <div onKeyPress={this.handleKeyPress}>
         {workoutUser ? (
           <div>
-            <Input
-              onChange={this.handleChange}
-              className={stl["inpout-add-value"]}
-              value={this.state.numberOfTimes}
-              error={error ? error : null}
-              name="numberOfTimes"
-              icon={
-                <Icon
-                  name="add"
-                  color="green"
-                  onClick={this.addValue}
-                  inverted
-                  circular
-                  link
-                />
-              }
-              placeholder={exercise}
-            />
-            <Input
-              name="weight"
-              onChange={this.handleChange}
-              className={stl["inpout-add-value"]}
-              value={this.state.weight}
-              error={error ? error : null}
-              placeholder="вес"
-            />
+            <div className={stl["div-of-inputs"]}>
+              <Input
+                name="weight"
+                onChange={this.handleChange}
+                className={stl["input-weight"]}
+                value={this.state.weight}
+                error={error ? error : null}
+                placeholder="вес"
+              />
+              <Input
+                onChange={this.handleChange}
+                className={stl["input-numberOfTimes"]}
+                value={this.state.numberOfTimes}
+                error={error ? error : null}
+                name="numberOfTimes"
+                icon={
+                  <Icon
+                    name="add"
+                    color="green"
+                    onClick={this.addValue}
+                    inverted
+                    circular
+                    link
+                  />
+                }
+                placeholder={exercise}
+              />
+            </div>
             {error ? (
               <div id={stl["warning"]}>
                 <Label
