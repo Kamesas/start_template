@@ -20,7 +20,9 @@ class DayForWeek extends Component {
       ) {
         return (
           <div key={i}>
-            <div onClick={() => alert(i)}>{value.numberOfTimes}</div>
+            <div onClick={() => alert(i)}>
+              {value.numberOfTimes} {value.weight ? `/${value.weight}кг` : null}
+            </div>
             <span>{value.time}</span>
           </div>
         );

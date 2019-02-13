@@ -23,7 +23,10 @@ class ItemOfValue extends Component {
     return (
       <div id={stl["label-item-value"]}>
         <Label basic color="green" size="medium">
-          <span>{value.numberOfTimes && value.numberOfTimes}</span>
+          <span>
+            {value.numberOfTimes && value.numberOfTimes}
+            {value.weight ? `/${value.weight}кг` : null}
+          </span>
           <Icon name="delete" onClick={this.daleteItem} color="red" />
           <p>
             <Icon name="clock outline" />

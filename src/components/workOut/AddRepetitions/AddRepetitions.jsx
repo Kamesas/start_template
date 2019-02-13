@@ -9,12 +9,15 @@ import stl from "./AddRepetitions.module.sass";
 class AddRepetitions extends Component {
   state = {
     numberOfTimes: "",
+    weight: "",
     error: false
   };
 
-  handleChange = (e, { value }) => {
+  handleChange = (e, { name, value }) => {
     this.setState({ error: false });
-    this.setState({ numberOfTimes: value.replace(/[^\d]/g, "").substr(0, 3) });
+    this.setState({
+      [name]: value.replace(/[^\d]/g, "").substr(0, 3)
+    });
   };
 
   removeError = () => {
@@ -27,7 +30,8 @@ class AddRepetitions extends Component {
       date: moment().format("DD MM YYYY"),
       time: moment().format("H:mm:ss"),
       exercise: this.props.exercise,
-      numberOfTimes: this.state.numberOfTimes
+      numberOfTimes: this.state.numberOfTimes,
+      weight: this.state.weight
     };
 
     if (this.state.numberOfTimes !== "") {
@@ -35,7 +39,7 @@ class AddRepetitions extends Component {
     } else {
       this.setState({ error: true });
     }
-    this.setState({ numberOfTimes: "" });
+    this.setState({ numberOfTimes: "", weight: "" });
   };
 
   handleKeyPress = e => {
@@ -57,18 +61,26 @@ class AddRepetitions extends Component {
               className={stl["inpout-add-value"]}
               value={this.state.numberOfTimes}
               error={error ? error : null}
+              name="numberOfTimes"
               icon={
                 <Icon
                   name="add"
                   color="green"
                   onClick={this.addValue}
-                  //onKeyPress={this.handleKeyPress}
                   inverted
                   circular
                   link
                 />
               }
               placeholder={exercise}
+            />
+            <Input
+              name="weight"
+              onChange={this.handleChange}
+              className={stl["inpout-add-value"]}
+              value={this.state.weight}
+              error={error ? error : null}
+              placeholder="вес"
             />
             {error ? (
               <div id={stl["warning"]}>
