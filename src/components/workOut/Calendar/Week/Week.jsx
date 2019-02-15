@@ -11,10 +11,11 @@ const Week = ({ bodyCalendar, toggleOpenItem, dayId }) => {
         return (
           <div key={day.format("DD MM YYYY")}>
             <UserValue.Consumer>
-              {({ workoutValues }) => (
+              {({ workoutValues, workoutUser }) => (
                 <DayForWeek
                   day={day}
                   workoutVal={workoutValues}
+                  workoutUser={workoutUser}
                   toggleOpenItem={toggleOpenItem}
                   isShow={dayId === day.format("DD MM YYYY") ? true : false}
                 />

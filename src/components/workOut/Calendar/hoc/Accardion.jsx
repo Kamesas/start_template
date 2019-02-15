@@ -1,8 +1,9 @@
 import React, { Component } from "react";
+import moment from "moment";
 
 function Accordeon(WrapComponent) {
   return class DaySwitch extends Component {
-    state = { dayId: null };
+    state = { dayId: moment().format("DD MM YYYY") };
 
     toggleOpenItem = dayId => {
       this.setState({

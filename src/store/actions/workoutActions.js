@@ -48,6 +48,19 @@ export const delValue = (id, userLogin) => async dispatch => {
     .remove();
 };
 
+export const updateValue = (userLogin, id, data) => async dispatch => {
+  return databaseRef
+    .child(userLogin)
+    .child(id)
+    .update(data)
+    .then(() => databaseRef.once("value"))
+    .then(snapshot => snapshot.val())
+    .catch(error => ({
+      errorCode: error.code,
+      errorMessage: error.message
+    }));
+};
+
 /* Authentification with Firebase */
 export const fetchworkoutUser = () => dispatch => {
   fireAuth.onAuthStateChanged(user => {

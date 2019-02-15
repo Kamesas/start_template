@@ -4,15 +4,39 @@ import moment from "moment";
 import _ from "lodash";
 import OneExercise from "./OneExersice";
 import { optionsExercises } from "../../../Exercises/db_exercises";
+import DayToolbar from "./DayToolbar";
+import { Button } from "semantic-ui-react";
+import { connect } from "react-redux";
+import ModalWindow from "./EditDay/ModalWindow";
+
+import {
+  delValue,
+  updateValue
+} from "../../../../../store/actions/workoutActions";
+import EditForm from "./EditDay/EditForm";
 
 const currentDay = moment().format("DD MM YYYY");
 const currentMonth = moment().format("MM YY");
 
 class DayForWeek extends Component {
-  state = {};
+  state = { showEditPanel: false };
+
+  toggleShowEditPanel = () => {
+    this.setState({ showEditPanel: !this.state.showEditPanel });
+  };
+
+  deleteItem = id => {
+    const { workoutUser } = this.props;
+    this.props.delValue(id, workoutUser.displayName);
+  };
+
+  updateItem = (i, value) => {
+    const { workoutUser } = this.props;
+    console.log(workoutUser.displayName, i, value);
+  };
 
   renderDayValue = (nameExercise = "присед") => {
-    const { day, workoutVal } = this.props;
+    const { day, workoutVal, workoutUser } = this.props;
 
     return _.map(workoutVal, (value, i) => {
       if (
@@ -21,7 +45,15 @@ class DayForWeek extends Component {
       ) {
         return (
           <div key={i}>
-            <div onClick={() => alert(i)}>
+            {this.state.showEditPanel && workoutUser ? (
+              <div className={stl["edit-panel"]}>
+                <ModalWindow id={i} value={value} workoutUser={workoutUser}>
+                  <EditForm />
+                </ModalWindow>
+                <Button onClick={() => this.deleteItem(i)}>Del</Button>
+              </div>
+            ) : null}
+            <div onClick={this.toggleShowEditPanel}>
               {value.numberOfTimes}{" "}
               {value.weight ? ` (${value.weight}кг)` : null}
             </div>
@@ -51,7 +83,7 @@ class DayForWeek extends Component {
   };
 
   render() {
-    const { day, isShow } = this.props;
+    const { day, isShow, toggleOpenItem } = this.props;
 
     const dayForWeek = stl["day-for-week"];
     const currMonth =
@@ -62,12 +94,7 @@ class DayForWeek extends Component {
 
     return (
       <div className={`${dayForWeek} ${currMonth} ${currtDay} ${sunday}`}>
-        <div
-          className={stl["day-and-date"]}
-          onClick={() => this.props.toggleOpenItem(day.format("DD MM YYYY"))}
-        >
-          <span>{day.format("dd")}</span> <span>{day.date()}</span>
-        </div>
+        <DayToolbar stl={stl} day={day} toggleOpenItem={toggleOpenItem} />
 
         {isShow ? (
           <div>
@@ -89,4 +116,15 @@ class DayForWeek extends Component {
   }
 }
 
-export default DayForWeek;
+const mapDispatchToProps = dispatch => {
+  return {
+    delValue: (id, usersLogin) => dispatch(delValue(id, usersLogin)),
+    updateValue: (userLogin, id, data) =>
+      dispatch(updateValue(userLogin, id, data))
+  };
+};
+
+export default connect(
+  null,
+  mapDispatchToProps
+)(DayForWeek);
