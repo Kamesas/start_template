@@ -5,10 +5,9 @@ import _ from "lodash";
 import OneExercise from "./OneExersice";
 import { optionsExercises } from "../../../Exercises/db_exercises";
 import DayToolbar from "./DayToolbar";
-import { Button } from "semantic-ui-react";
+import { Icon } from "semantic-ui-react";
 import { connect } from "react-redux";
 import ModalWindow from "./EditDay/ModalWindow";
-
 import {
   delValue,
   updateValue
@@ -30,9 +29,10 @@ class DayForWeek extends Component {
     this.props.delValue(id, workoutUser.displayName);
   };
 
-  updateItem = (i, value) => {
+  updateItem = (id, value) => {
     const { workoutUser } = this.props;
-    console.log(workoutUser.displayName, i, value);
+    console.log(workoutUser.displayName, id, value);
+    this.props.updateValue(workoutUser.displayName, id, value);
   };
 
   renderDayValue = (nameExercise = "присед") => {
@@ -47,10 +47,20 @@ class DayForWeek extends Component {
           <div key={i}>
             {this.state.showEditPanel && workoutUser ? (
               <div className={stl["edit-panel"]}>
-                <ModalWindow id={i} value={value} workoutUser={workoutUser}>
-                  <EditForm />
+                <ModalWindow>
+                  <EditForm
+                    id={i}
+                    value={value}
+                    updateItem={this.updateItem}
+                    workoutUser={workoutUser}
+                  />
                 </ModalWindow>
-                <Button onClick={() => this.deleteItem(i)}>Del</Button>
+                <Icon
+                  name="remove"
+                  onClick={() => this.deleteItem(i)}
+                  color="red"
+                  size="large"
+                />
               </div>
             ) : null}
             <div onClick={this.toggleShowEditPanel}>
@@ -83,7 +93,7 @@ class DayForWeek extends Component {
   };
 
   render() {
-    const { day, isShow, toggleOpenItem } = this.props;
+    const { day, isShow, toggleOpenItem, workoutUser } = this.props;
 
     const dayForWeek = stl["day-for-week"];
     const currMonth =
@@ -94,7 +104,18 @@ class DayForWeek extends Component {
 
     return (
       <div className={`${dayForWeek} ${currMonth} ${currtDay} ${sunday}`}>
-        <DayToolbar stl={stl} day={day} toggleOpenItem={toggleOpenItem} />
+        <DayToolbar
+          stl={stl}
+          day={day}
+          toggleOpenItem={toggleOpenItem}
+          toggleShowEditPanel={this.toggleShowEditPanel}
+          optionsExercises={optionsExercises}
+          renderSum={this.renderSum}
+          renderDayValue={this.renderDayValue}
+          isShow={isShow}
+          showEditPanel={this.state.showEditPanel}
+          workoutUser={workoutUser}
+        />
 
         {isShow ? (
           <div>

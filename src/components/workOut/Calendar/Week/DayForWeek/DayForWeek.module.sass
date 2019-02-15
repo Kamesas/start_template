@@ -1,5 +1,13 @@
 .day-for-week  
   color: #aaa 
+  position: relative
+  #settings
+    position: absolute
+    right: 0px
+    top: 6px
+    cursor: pointer
+    &:hover
+      color: #5f5c5c
   .day-exercise    
     > div
       background-color: #eee
@@ -13,6 +21,15 @@
       &:last-child
         border-bottom: 1px solid #fff
 
+.edit-panel 
+  i
+    cursor: pointer
+    padding-right: 5px
+    &:last-child
+      float: right
+      padding-right: 0
+      padding-left: 10px
+
 
 .day-and-date
   text-transform: uppercase 
@@ -22,6 +39,11 @@
   border-radius: 5px 5px 0 0
   border-bottom: 1px solid #fff
   cursor: pointer
+  &-exercise
+    display: flex
+    justify-content: flex-start
+    flex-wrap: wrap
+
 
 .render-day-value
   display: flex

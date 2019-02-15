@@ -3,7 +3,8 @@ import moment from "moment";
 
 function Accordeon(WrapComponent) {
   return class DaySwitch extends Component {
-    state = { dayId: moment().format("DD MM YYYY") };
+    //state = { dayId: moment().format("DD MM YYYY") };
+    state = { dayId: null };
 
     toggleOpenItem = dayId => {
       this.setState({
