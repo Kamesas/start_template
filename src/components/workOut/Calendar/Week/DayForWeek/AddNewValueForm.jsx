@@ -8,11 +8,18 @@ import { connect } from "react-redux";
 class AddNewValueForm extends Component {
   state = {
     numberOfTimes: "",
-    exercise: "присед",
-    weight: ""
+    value: "присед",
+    weight: "",
+    error: false
   };
 
-  handleChange = (e, { name, value }) => this.setState({ [name]: value });
+  handleChange = (e, { name, value }) => {
+    this.setState({ error: false });
+    this.setState({
+      [name]: value.replace(/[^\d]/g, "").substr(0, 3)
+    });
+  };
+  handleChangeSelect = (e, { value }) => this.setState({ value });
 
   updateItem = () => {
     const { workoutUser } = this.props;
@@ -20,25 +27,26 @@ class AddNewValueForm extends Component {
       userLogin: workoutUser.displayName,
       date: this.props.day.format("DD MM YYYY"),
       time: moment().format("H:mm:ss"),
-      exercise: this.state.exercise,
+      exercise: this.state.value,
       numberOfTimes: this.state.numberOfTimes,
       weight: this.state.weight
     };
 
-    console.log(newValue);
+    //console.log(newValue);
 
     if (this.state.numberOfTimes !== "" && workoutUser) {
       this.props.addUserValues(newValue);
+      alert("Успешно добавлено !");
     } else {
-      //this.setState({ error: true });
-      alert("no!");
+      this.setState({ error: true });
     }
 
     this.setState({ numberOfTimes: "", weight: "" });
   };
 
   render() {
-    const { numberOfTimes, weight, exercise } = this.state;
+    const { numberOfTimes, weight, value } = this.state;
+    // console.log(this.props.day.format("DD MM YYYY"));
     return (
       <Form>
         <Form.Group widths="equal">
@@ -49,6 +57,7 @@ class AddNewValueForm extends Component {
             name="numberOfTimes"
             value={numberOfTimes}
             onChange={this.handleChange}
+            error={this.state.error}
           />
           <Form.Field
             control={Input}
@@ -63,9 +72,9 @@ class AddNewValueForm extends Component {
             label="Упражнение"
             options={optionsExercises}
             placeholder="Упражнение"
-            name={exercise}
-            defaultValue={exercise}
-            onChange={this.handleChange}
+            //name={exercise}
+            defaultValue={value}
+            onChange={this.handleChangeSelect}
           />
         </Form.Group>
 

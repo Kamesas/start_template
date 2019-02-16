@@ -1,6 +1,6 @@
 import React from "react";
 import OneExersiceForToolbar from "./OneExersiceForToolbar";
-import { Icon } from "semantic-ui-react";
+//import { Icon } from "semantic-ui-react";
 import DayToolbarButtons from "./DayToolbarButtons";
 
 const DayToolbar = ({

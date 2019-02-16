@@ -31,7 +31,7 @@ class DayForWeek extends Component {
 
   updateItem = (id, value) => {
     const { workoutUser } = this.props;
-    console.log(workoutUser.displayName, id, value);
+    //console.log(workoutUser.displayName, id, value);
     this.props.updateValue(workoutUser.displayName, id, value);
   };
 
