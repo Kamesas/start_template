@@ -10,20 +10,19 @@ export const UserValue = React.createContext();
 export default ({ workoutUser, workoutValues }) => (
   <Tabs>
     <TabList>
-      <Tab>Календар</Tab>
       <Tab>Сегодня</Tab>
-
+      <Tab>Календар</Tab>
       <Tab>График</Tab>
     </TabList>
+
+    <TabPanel>
+      <Exercises workoutUser={workoutUser} workoutValues={workoutValues} />
+    </TabPanel>
 
     <TabPanel>
       <UserValue.Provider value={{ workoutValues, workoutUser }}>
         <Calendar />
       </UserValue.Provider>
-    </TabPanel>
-
-    <TabPanel>
-      <Exercises workoutUser={workoutUser} workoutValues={workoutValues} />
     </TabPanel>
 
     <TabPanel>
