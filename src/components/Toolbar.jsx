@@ -19,9 +19,6 @@ class Toolbar extends Component {
   render() {
     const authOrNot = this.props.workoutUser ? (
       <Fragment>
-        <NavLink to="/workout">
-          <Menu.Item link>WorkOut</Menu.Item>
-        </NavLink>
         <NavLink to="/logout">
           <Menu.Item link>LogOut</Menu.Item>
         </NavLink>
@@ -58,6 +55,9 @@ class Toolbar extends Component {
               <Menu.Item link>
                 <Icon name="home" />
               </Menu.Item>
+            </NavLink>
+            <NavLink to="/workout">
+              <Menu.Item link>WorkOut</Menu.Item>
             </NavLink>
             {authOrNot}
             <Menu.Item position="right">
