@@ -3,7 +3,7 @@ import { Icon, Header, Modal } from "semantic-ui-react";
 
 const AddNewValue = ({ children }) => {
   return (
-    <Modal trigger={<Icon name="add" color="green" size="big" />} closeIcon>
+    <Modal trigger={<Icon name="add" color="green" size="large" />} closeIcon>
       <Header icon="add" color="green" content="Добавить новою запись" />
       <Modal.Content>{children}</Modal.Content>
     </Modal>

@@ -10,5 +10,12 @@ export const optionsExercises = [
   { key: "bars", text: "Брусья", value: "брусья", color: "green" },
   { key: "biceps", text: "Бицепс", value: "бицепс", color: "black" },
   { key: "hand", text: "Кисть", value: "кисть", color: "brown" },
-  { key: "rope", text: "Скакалка", value: "скакалка", color: "orange" }
+  { key: "rope", text: "Скакалка", value: "скакалка", color: "orange" },
+  {
+    key: "benchpress",
+    text: "Жим от груди",
+    value: "жим от груди",
+    color: "yellow"
+  },
+  { key: "deadlift", text: "Становая", value: "становая", color: "purple" }
 ];

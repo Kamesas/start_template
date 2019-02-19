@@ -18,16 +18,19 @@ const DayToolbarButtons = ({
         <Icon
           name="setting"
           onClick={toggleShowEditPanel}
-          size="big"
+          size="large"
           color={showEditPanel ? "red" : "orange"}
         />
       ) : null}
-      <AddNewValue>
-        <AddNewValueForm day={day} workoutUser={workoutUser} />
-      </AddNewValue>
+      {workoutUser ? (
+        <AddNewValue>
+          <AddNewValueForm day={day} workoutUser={workoutUser} />
+        </AddNewValue>
+      ) : null}
+
       <Icon
         name={isShow ? "arrow up" : "arrow down"}
-        size="big"
+        size="large"
         color="black"
         onClick={() => toggleOpenItem(day.format("DD MM YYYY"))}
       />

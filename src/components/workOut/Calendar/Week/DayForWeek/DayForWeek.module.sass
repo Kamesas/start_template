@@ -1,6 +1,8 @@
 .day-for-week  
   color: #aaa 
   position: relative
+  > div span
+    color: #000
   #settings
     position: absolute
     right: 0px
@@ -8,6 +10,9 @@
     cursor: pointer
     &:hover
       color: #5f5c5c
+    i      
+      
+      margin: 5px
   .day-exercise    
     > div
       background-color: #eee
@@ -64,7 +69,12 @@
 
 .current-day  
   > .day-and-date
-      color: green
+    > div  
+      span
+        color: green
+      
 .sunday
-  span
-    color: red
+  > div
+    > div
+      > span
+        color: red
