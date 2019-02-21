@@ -1,0 +1,28 @@
+.main-menu
+  position: relative
+  margin-bottom: 10px
+  
+#show-mobile-btn
+  display: none
+  position: absolute
+  right: 5px
+  top: 2px
+  z-index: 99
+  transition: all .5s easy
+  
+@media only screen and (max-width: 767px)
+  #hide-mobile-menu
+    display: none
+
+  #show-mobile-btn
+    display: block
+    transition: all .5s easy
+  
+  .menu-block
+    position: absolute
+    z-index: 98
+    width: 100%
+
+
+
+ 
