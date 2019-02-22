@@ -19,16 +19,16 @@ class Toolbar extends Component {
   render() {
     const authOrNot = this.props.workoutUser ? (
       <Fragment>
-        <NavLink to="/logout">
+        <NavLink to="/logout" activeClassName={stl["selected"]}>
           <Menu.Item link>LogOut</Menu.Item>
         </NavLink>
       </Fragment>
     ) : (
       <Fragment>
-        <NavLink to="/login">
+        <NavLink to="/login" activeClassName={stl["selected"]}>
           <Menu.Item link>LogIn </Menu.Item>
         </NavLink>
-        <NavLink to="/signup">
+        <NavLink to="/signup" activeClassName={stl["selected"]}>
           <Menu.Item link>SignUp </Menu.Item>
         </NavLink>
       </Fragment>
@@ -51,12 +51,12 @@ class Toolbar extends Component {
             id={stl[isShow ? "" : "hide-mobile-menu"]}
             onClick={this.toggleMenu}
           >
-            <NavLink exact to="/">
+            <NavLink exact to="/" activeClassName={stl["selected"]}>
               <Menu.Item link>
                 <Icon name="home" />
               </Menu.Item>
             </NavLink>
-            <NavLink to="/workout">
+            <NavLink to="/workout" activeClassName={stl["selected"]}>
               <Menu.Item link>WorkOut</Menu.Item>
             </NavLink>
             {authOrNot}

@@ -1,6 +1,6 @@
 import React from "react";
 import { Line } from "react-chartjs-2";
-import { monthName } from "./allMonthValue";
+import { monthName } from "./AllMonthValue";
 import { datasetsForChartDate } from "./dateForChart";
 import { optionsExercises } from "../Exercises/db_exercises";
 

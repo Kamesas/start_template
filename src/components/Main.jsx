@@ -1,9 +1,10 @@
 import React from "react";
+import MainScreen from "./_mainScreen/MainScreen";
 
 const Main = () => {
   return (
     <div>
-      <h1>All Projects</h1>
+      <MainScreen />
     </div>
   );
 };

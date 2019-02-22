@@ -1,4 +1,4 @@
-import { allMonthValue } from "./allMonthValue";
+import { allMonthValue } from "./AllMonthValue";
 
 export const datasetsForChartDate = (
   exercise = "присед",
