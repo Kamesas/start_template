@@ -1,0 +1,80 @@
+.day-for-week  
+  color: #aaa 
+  position: relative
+  > div span
+    color: #000
+  #settings
+    position: absolute
+    right: 0px
+    top: 6px
+    cursor: pointer
+    &:hover
+      color: #5f5c5c
+    i      
+      
+      margin: 5px
+  .day-exercise    
+    > div
+      background-color: #eee
+      display: flex
+      padding-bottom: 10px
+      padding: 5px
+      &:first-child
+        font-style: italic
+        span
+          margin-left: 10px
+      &:last-child
+        border-bottom: 1px solid #fff
+
+.edit-panel 
+  i
+    cursor: pointer
+    padding-right: 5px
+    &:last-child
+      float: right
+      padding-right: 0
+      padding-left: 10px
+
+
+.day-and-date
+  text-transform: uppercase 
+  font-weight: bold
+  padding: 10px 5px
+  background-color: #bbb
+  border-radius: 5px 5px 0 0
+  border-bottom: 1px solid #fff
+  cursor: pointer
+  &-exercise
+    display: flex
+    justify-content: flex-start
+    flex-wrap: wrap
+
+
+.render-day-value
+  display: flex
+  justify-content: flex-start
+  flex-wrap: wrap  
+  > div
+    border: 1px solid #aaa
+    border-radius: 15px 5px
+    padding: 3px
+    margin: 3px
+    text-align: center
+  span
+    font-size: 12px
+      
+
+.current-month
+  color: #000
+
+.current-day  
+  > .day-and-date
+    > div  
+      span
+        color: green
+      
+.sunday
+  > div
+    > div
+      > span
+        color: red

@@ -1,0 +1,1 @@
+npm i react-redux redux redux-devtools-extension redux-thunk node-sass firebase semantic-ui-css semantic-ui-react
