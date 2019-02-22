@@ -1,0 +1,11 @@
+.index-sandbox {
+  margin: 0;
+  padding: 0;
+  font-family: "Roboto", sans-serif;
+  font-size: 14px;
+}
+
+.index-sandbox {
+  display: grid;
+  grid-template-columns: 1fr 5fr;
+}

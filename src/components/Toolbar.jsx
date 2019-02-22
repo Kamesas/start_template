@@ -59,6 +59,9 @@ class Toolbar extends Component {
             <NavLink to="/workout" activeClassName={stl["selected"]}>
               <Menu.Item link>WorkOut</Menu.Item>
             </NavLink>
+            <NavLink to="/sandbox" activeClassName={stl["selected"]}>
+              <Menu.Item link>SandBox</Menu.Item>
+            </NavLink>
             {authOrNot}
             <Menu.Item position="right">
               {workoutUser ? workoutUser.email : "Инкогнито"}

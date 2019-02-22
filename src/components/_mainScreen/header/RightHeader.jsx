@@ -13,6 +13,7 @@ export default class RightHeader extends Component {
     this.setState({ activeIndex: newIndex });
   };
 
+
   render() {
     const { activeIndex } = this.state;
 

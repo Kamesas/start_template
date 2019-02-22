@@ -7,6 +7,7 @@ import SignUp from "./components/auth/SignUp";
 import LogIn from "./components/auth/LogIn";
 import LogOut from "./components/auth/LogOut";
 import Toolbar from "./components/Toolbar";
+import SandBox from "./components/_sandBox";
 
 class App extends Component {
   render() {
@@ -19,6 +20,7 @@ class App extends Component {
             <Switch>
               <Route exact path="/" component={Main} />
               <Route path="/workout" component={WorkOut} />
+              <Route path="/sandbox" component={SandBox} />
               <Route path="/login" component={LogIn} />
               <Route path="/signup" component={SignUp} />
               <Route path="/logout" component={LogOut} />
