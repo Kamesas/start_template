@@ -4,6 +4,7 @@ import { BrowserRouter, Switch, Route } from "react-router-dom";
 import App from "./App";
 
 import Home from "./layout/home/home";
+import SanBoxButton from "./components/Button/SanBoxButton";
 
 const SandBox = () => {
   return (
@@ -11,7 +12,8 @@ const SandBox = () => {
       <BrowserRouter>
         <App>
           <Switch>
-            <Route exact path="/" component={Home} />
+            <Route path="/sandbox/mainsandbox" component={Home} />
+            <Route path="/sandbox/button" component={SanBoxButton} />
           </Switch>
         </App>
       </BrowserRouter>
